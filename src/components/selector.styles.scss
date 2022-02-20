@@ -1,0 +1,19 @@
+.person-container {
+    display: flex;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+    margin-bottom: 15px;
+    img {
+        // width: 48px;
+        height: 90%;
+    }
+    .person-details {
+        // width: 70%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        padding: 10px 20px;
+    }
+}
