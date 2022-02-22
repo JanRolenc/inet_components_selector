@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 
 import Select from 'react-select';
-import { seznamOsob } from '../docs/data';
-import personalImage from '../pictures/icon_head.png';
+import { personsList } from '../docs/personsList';
 import './selector.styles.scss';
+import PersonContainer from './person-container/person-container.component';
 
 // const Checkbox = ({ children, ...props }: JSX.IntrinsicElements['input']) => (
 //   <label style={{ marginRight: '1em' }}>
@@ -11,6 +11,7 @@ import './selector.styles.scss';
 //     {children}
 //   </label>
 // );
+
 
 interface State {
   readonly isClearable: boolean;
@@ -62,22 +63,32 @@ export default class SingleSelect extends Component<{}, State> {
           isClearable={isClearable}
           isRtl={isRtl}
           isSearchable={isSearchable}
-          name="seznamOsob"
-          options={seznamOsob}
-          // formatOptionLabel={ (option, meta) => {
+          name="osoba"
+          options={personsList}
+          formatOptionLabel={PersonContainer}
+            // (option, meta) => {
 
           //   return meta.context === "menu"?
           //     <div className="person-container">
           //       <img src={personalImage} alt="icon"/>                             
           //       <div className="person-details">
-          //       {option.name}
-          //       { option.status && option.status.zamestnanec && <span>Zam. { option.status.zamestnanec.map(r => r ) }</span> }
-          //       { option.status && option.status.student && <span>Stud. { option.status.student.map(r => r) }</span> }
+          //       {option.label}
+          //       {/* { `${option.status}`} */}
+          //       {/* {option.status.zamestnanec} */}
+                
+          //       {/* { `${option.status} ${option.status.zamestnanec} {<span>Zamestnanec { option.status.zamestnanec.map(r => r ) }</span>}` } */}
+          //       { option.status && option.status.student && <span>Student { option.status.student.map(r => r) }</span> }
           //       </div>
           //     </div>
           //     :
-          //     option.name
+          //     option.label
           // }}
+          // formatOptionLabel={ (option, meta) => {
+          //   return meta.context === "menu"?
+          //     <PersonContainer />
+          //     :
+          //     option.name
+          // }
         />
 
         <div

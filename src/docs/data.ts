@@ -13,6 +13,8 @@ export interface SeznamOsob {
     // readonly isFixed?: boolean;
     // readonly isDisabled?: boolean;
     readonly label: string;
+    name: string;
+    phone: number;
     readonly status?: vztahKuniverzite;
   };
   // export interface ColourOption {
@@ -23,16 +25,16 @@ export interface SeznamOsob {
   //   readonly isDisabled?: boolean;
   // }
   export const seznamOsob: readonly SeznamOsob[] = [
-    { value: 'zdeněk machač', id: 1, label: 'Zdeněk Machač', status: { zamestnanec: ['ÚVT', 'ÚVT'], student: ['FI'] } },
-    { value: 'ota pavel', id: 2, label: 'Ota Pavel', status: { zamestnanec: ['MU', 'PřF'], student: [] } },
-    { value: 'bohumi hrabal', id: 3, label: 'Bohumi Hrabal', status: { zamestnanec: ['MU', 'ESF'], student: ['ESF'] } },
-    { value: 'jan skácel', id: 4, label: 'Jan Skácel', status: { zamestnanec: ['MU', 'PrF'], student: [''] } },
-    { value: 'Karel čapek', id: 5, label: 'Karel Čapek', status: { zamestnanec: ['MU', 'FF'], student: ['FF'] } },
-    { value: 'arnošt lustig', id: 6, label: 'Arnošt Lustig', status: { zamestnanec: ['MU', 'FSS'], student: ['FSS'] } },
-    { value: 'vladislav vančura', id: 7, label: 'Vladislav Vančura', status: { zamestnanec: ['MU', 'FI'], student: [''] } },
-    { value: 'karolina světlá', id: 8, label: 'Karolina Světlá', status: { zamestnanec: ['MU', 'PdF'], student: [''] } },
-    { value: 'alena mornštajnová', id: 9, label: 'Alena Mornštajnová', status: { zamestnanec: ['MU', 'FSpS'], student: [''] } },
-    { value: 'božena němcová', id: 10, label: 'Božena Němcová', status: { zamestnanec: ['CEITEC', 'CEITEC'], student: [''] } },
+    { value: 'zdeněk machač', id: 1, label: 'Zdeněk Machač', name: "osoba", phone: 111111111, status: { zamestnanec: ['ÚVT', 'ÚVT'], student: ['FI'] } },
+    { value: 'ota pavel', id: 2, label: 'Ota Pavel', name: "osoba", phone: 222222222, status: { zamestnanec: ['MU', 'PřF'], student: [] } },
+    { value: 'bohumi hrabal', id: 3, label: 'Bohumi Hrabal', name: "osoba", phone: 333333333, status: { zamestnanec: ['MU', 'ESF'], student: ['ESF'] } },
+    { value: 'jan skácel', id: 4, label: 'Jan Skácel', name: "osoba", phone: 444444444, status: { zamestnanec: ['MU', 'PrF'], student: [''] } },
+    { value: 'Karel čapek', id: 5, label: 'Karel Čapek', name: "osoba", phone: 555555555, status: { zamestnanec: ['MU', 'FF'], student: ['FF'] } },
+    { value: 'arnošt lustig', id: 6, label: 'Arnošt Lustig', name: "osoba", phone: 666666666, status: { zamestnanec: ['MU', 'FSS'], student: ['FSS'] } },
+    { value: 'vladislav vančura', id: 7, label: 'Vladislav Vančura', name: "osoba", phone: 777777777, status: { zamestnanec: ['MU', 'FI'], student: [''] } },
+    { value: 'karolina světlá', id: 8, label: 'Karolina Světlá', name: "osoba", phone: 888888888, status: { zamestnanec: ['MU', 'PdF'], student: [''] } },
+    { value: 'alena mornštajnová', id: 9, label: 'Alena Mornštajnová', name: "osoba", phone: 999999999, status: { zamestnanec: ['MU', 'FSpS'], student: [''] } },
+    { value: 'božena němcová', id: 10, label: 'Božena Němcová', name: "osoba", phone: 111222333, status: { zamestnanec: ['CEITEC', 'CEITEC'], student: [''] } },
   ];
   // export const colourOptions: readonly ColourOption[] = [
   //   { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
