@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/inet_components_selector/static/css/main.78d7ee98.css",
+    "main.js": "/inet_components_selector/static/js/main.aaf4bd55.js",
+    "index.html": "/inet_components_selector/index.html",
+    "main.78d7ee98.css.map": "/inet_components_selector/static/css/main.78d7ee98.css.map",
+    "main.aaf4bd55.js.map": "/inet_components_selector/static/js/main.aaf4bd55.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.78d7ee98.css",
+    "static/js/main.aaf4bd55.js"
+  ]
+}
