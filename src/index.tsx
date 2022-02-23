@@ -1,11 +1,5 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import App from './components/selector.component';
-// import CustomControl from './components/test';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import Selector from "./components/selector/selector-component";
 
-ReactDOM.render(
-<App />,
-document.getElementById('root')
-);
-
-// ReactDOM.render(<CustomControl />, document.getElementById("root"));
+ReactDOM.render(<Selector />, document.getElementById("root"));

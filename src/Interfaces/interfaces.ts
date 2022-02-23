@@ -11,3 +11,8 @@ export interface IPersons {
     readonly zamestnanec: string[];
     readonly student: string[];
   }
+
+export type FormatOptionLabelContext = 'menu' | 'value';
+export interface FormatOptionLabelMeta {
+  context: FormatOptionLabelContext;
+}
