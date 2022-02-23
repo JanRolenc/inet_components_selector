@@ -1,13 +1,18 @@
 .person-container {
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(238, 218, 131);
+  }
 
   .person-details {
     display: flex;
     flex-direction: column;
-  
+
     .person-details-status {
       display: flex;
       flex-direction: row;

@@ -7,11 +7,13 @@ import PersonContainer from "../person-container/person-container";
 
 function Selector() {
   return (
-    <Select
-      placeholder="Vyhledej..."
-      options={personsList}
-      formatOptionLabel={PersonContainer}
-    />
+    <div style={{ width: "50vw", marginTop: "50px" }}>
+      <Select
+        placeholder="Vyhledej..."
+        options={personsList}
+        formatOptionLabel={PersonContainer}
+      />
+    </div>
   );
 }
 
