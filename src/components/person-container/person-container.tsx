@@ -18,22 +18,10 @@ const PersonContainer = (
               Zaměstnanec: {props.status.zamestnanec.map((zam) => zam + " ")}
             </span>
           ) : (
-            // <span></span> radeji null nebo false
             false
           )}
-          {/* {props.status && props.status.student.length ? (
-            <React.Fragment>
-              hexadecimalni zapis mezery
-              <span>&#160;&#160;</span>
-              <span>
-                Student: {props.status.student.map((stud) => stud + " ")}
-              </span>
-            </React.Fragment>
-          ) : (
-            <span></span> misto prazdny span radeji false nebo null
-            false
-          )} */}
-          {/* alternatinve k ternarnimu vyrazu se: */}
+
+          {/* alternativne k ternarnimu vyrazu: */}
           {/* je to kratsi zapis bez ? a bez nutnosti psat variantu : */}
           {props.status && props.status.student.length > 0 && (
             <React.Fragment>
