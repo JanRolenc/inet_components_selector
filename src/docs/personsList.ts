@@ -2,9 +2,9 @@ import { IPersons } from "../Interfaces/interfaces";
 
   export const personsList: IPersons[] = [
     {
-      value: "zdeněk machač",
+      value: "jules verne",
       id: 1,
-      label: "Zdeněk Machač",
+      label: "Jules Verne",
       name: "osoba",
       phone: 111111111,
       status: { zamestnanec: ["ÚVT", "ÚVT"], student: ["FI", "FF"] },

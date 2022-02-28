@@ -1,18 +1,35 @@
-.person-container {
-  display: flex;
-  align-items: center;
-  height: 80px;
-  width: 500px;
-  img {
-    // width: 48px;
-    height: 90%;
-  }
-  .person-details {
-    // width: 70%;
+.selector-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 10px 20px;
-  }
+    .checkboxes {
+        display: flex;
+        flex-direction: row;
+        // justify-content: center;
+        align-items: center;
+        height: 40px;
+        margin-left: 0px;
+        // padding: 5px 20px 5px 0px;
+        label {
+            padding-left: 5px;
+            padding-right: 15px;
+        }
+    }
+    .person-container {
+        display: flex;
+        align-items: center;
+        height: 80px;
+        width: 500px;
+        img {
+            // width: 48px;
+            height: 90%;
+        }
+        .person-details {
+            // width: 70%;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 10px 20px;
+        }
+    }
 }

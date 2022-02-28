@@ -4,10 +4,10 @@ export interface IPersons {
     readonly label: string;
     readonly name: string;
     readonly phone: number;
-    readonly status?: Relationship;
+    readonly status: Relationship;
   }
   
-  interface Relationship {
+  export interface Relationship {
     readonly zamestnanec: string[];
     readonly student: string[];
   }
