@@ -101,27 +101,23 @@ function Selector() {
   // }, [])
 
   const onCheckboxStuChange = () => {
-    if (isCheckedZam && !isCheckedStu) {
-      setOptions(persons)
-    } else if (isCheckedZam && isCheckedStu) {
-      setOptions(persons.filter((p) => p.status.zamestnanec.length > 0))
-    } else if (!isCheckedZam && isCheckedStu) {
-      setOptions(persons.filter((p) => p.status.student.length > 10))
-    } else {
-      setOptions(persons.filter((p) => p.status.student.length > 0))
-    }
+    isCheckedZam && !isCheckedStu
+      ? setOptions(persons)
+      : isCheckedZam && isCheckedStu
+      ? setOptions(persons.filter((p) => p.status.zamestnanec.length > 0))
+      : !isCheckedZam && isCheckedStu
+      ? setOptions(persons.filter((p) => p.status.student.length > 10))
+      : setOptions(persons.filter((p) => p.status.student.length > 0))
     setIsCheckedStu(!isCheckedStu)
   }
   const onCheckboxZamChange = () => {
-    if (!isCheckedZam && isCheckedStu) {
-      setOptions(persons)
-    } else if (isCheckedZam && isCheckedStu) {
-      setOptions(persons.filter((p) => p.status.student.length > 0))
-    } else if (isCheckedZam && !isCheckedStu) {
-      setOptions(persons.filter((p) => p.status.zamestnanec.length > 10))
-    } else {
-      setOptions(persons.filter((p) => p.status.zamestnanec.length > 0))
-    }
+    !isCheckedZam && isCheckedStu
+      ? setOptions(persons)
+      : isCheckedZam && isCheckedStu
+      ? setOptions(persons.filter((p) => p.status.student.length > 0))
+      : isCheckedZam && !isCheckedStu
+      ? setOptions(persons.filter((p) => p.status.zamestnanec.length > 10))
+      : setOptions(persons.filter((p) => p.status.zamestnanec.length > 0))
     setIsCheckedZam(!isCheckedZam)
   }
 
