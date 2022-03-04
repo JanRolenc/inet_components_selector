@@ -1,7 +1,7 @@
 [{
     "value": "jules verne",
     "id": 1,
-    "label": "Jules",
+    "label": "Jules Verne",
     "name": "osoba",
     "phone": "111111111",
     "status": { "zamestnanec": [], "student": ["FI", "FF"] }

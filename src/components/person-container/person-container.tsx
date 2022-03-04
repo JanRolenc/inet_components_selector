@@ -1,5 +1,4 @@
 import React from 'react'
-import './person-container.scss'
 import { IPersons, FormatOptionLabelMeta } from '../../Interfaces/interfaces'
 import personalImage from '../../pictures/icon_head.png'
 
@@ -11,7 +10,11 @@ const PersonContainer = (
     <div className="person-container">
       <img src={personalImage} alt="icon" />
       <div className="person-details">
-        <span style={{ fontWeight: 'bold' }}>{props.label}</span>
+        <span style={{ fontWeight: 'bold' }}>
+          <a className="p-link" style={{ color: 'red' }}>
+            {props.label}
+          </a>
+        </span>
         <div>
           {props.status && props.status.zamestnanec.length > 0 ? (
             <span>
