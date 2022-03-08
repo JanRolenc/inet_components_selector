@@ -1,0 +1,132 @@
+
+input, textarea, select {
+  border: 1px solid #9CB5CC;
+  box-shadow: 0 0 2px #9CB5CC inset;
+  border-radius: 3px;
+  padding: 3px;
+}
+select {
+  padding: 2px 3px;
+}
+optgroup {
+  color: #2468A7;
+  margin-top: 3px;
+}
+option {
+  color: black;
+}
+input:hover, textarea:hover, select:hover {
+  border-color: #2468A7;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: #E8B34A !important;
+  box-shadow: 0 0 5px #F1BB52;
+}
+input[disabled]:hover, input[readonly]:hover, textarea[disabled]:hover, textarea[readonly]:hover, select[disabled]:hover {
+  border-color: #9CB5CC !important;
+}
+input[type="checkbox"], input[type="radio"] {
+  border: none;
+  background: none;
+  padding: 1px; /* Opera */
+}
+
+.btn {
+  background: #e5e5e5 !important;
+  background: -moz-linear-gradient(top, #fafafa, #e5e5e5) !important;
+  background: -o-linear-gradient(top, #fafafa, #e5e5e5) !important;
+  background: -webkit-linear-gradient(top, #fafafa, #e5e5e5) !important;
+  background: linear-gradient(top, #fafafa, #e5e5e5) !important;
+  border: 1px solid #b6b6b6 !important;
+  padding: 2px 0.6em !important;
+  border-radius: 4px;
+  box-shadow: none !important;
+  color: #303030 !important;
+  position: relative;
+}
+.btn[disabled], .btn.disabled {
+  background: #e5e5e5 !important;
+  background: -moz-linear-gradient(top, #fafafa, #e5e5e5) !important;
+  background: -o-linear-gradient(top, #fafafa, #e5e5e5) !important;
+  background: -webkit-linear-gradient(top, #fafafa, #e5e5e5) !important;
+  background: linear-gradient(top, #fafafa, #e5e5e5) !important;
+  border-color: #ccc !important;
+  box-shadow: none !important;
+  color: #bbb !important;
+}
+.btn:hover {
+  background: #eaeaea !important;
+  background: -moz-linear-gradient(top, #fcfcfc, #eaeaea) !important;
+  background: -o-linear-gradient(top, #fcfcfc, #eaeaea) !important;
+  background: -webkit-linear-gradient(top, #fcfcfc, #eaeaea) !important;
+  background: linear-gradient(top, #fcfcfc, #eaeaea) !important;
+  border-color: #888 !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2) !important;
+  color: #000 !important;
+  position: relative;
+}
+.btn:active {
+  background: #f4f4f4 !important;
+  background: -moz-linear-gradient(top, #f4f4f4, #e0e0e0) !important;
+  background: -o-linear-gradient(top, #fafafa, #e5e5e5) !important;
+  background: -webkit-linear-gradient(top, #fafafa, #e5e5e5) !important;
+  background: linear-gradient(top, #fafafa, #e5e5e5) !important;
+  border-color: #999 !important;
+  box-shadow: none !important;
+}
+.btn.selected {
+  background: #bbb !important;
+  background: -moz-linear-gradient(top, #ddd, #bbb) !important;
+  background: -o-linear-gradient(top, #ddd, #bbb) !important;
+  background: -webkit-linear-gradient(top, #ddd, #bbb) !important;
+  background: linear-gradient(top, #ddd, #bbb) !important;
+  border-color: #aaa !important;
+  color: #000 !important;
+}
+.btn.primary {
+  background: #666 !important;
+  background: -moz-linear-gradient(top, #a9a9a9, #666) !important;
+  background: -o-linear-gradient(top, #a9a9a9, #666) !important;
+  background: -webkit-linear-gradient(top, #a9a9a9, #666) !important;
+  background: linear-gradient(top, #a9a9a9, #666) !important;
+  border-color: #888 !important;
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  font-weight: bold;
+}
+.btn.primary:hover {
+  background: #555 !important;
+  background: -moz-linear-gradient(top, #9b9b9b, #555) !important;
+  background: -o-linear-gradient(top, #9b9b9b, #555) !important;
+  background: -webkit-linear-gradient(top, #9b9b9b, #555) !important;
+  background: linear-gradient(top, #9b9b9b, #555) !important;
+  border-color: #666 !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+
+.clps-grp > .btn, .clps-grp > span > select, .clps-grp > input {
+  border-radius: 0;
+  margin: 0;
+}
+
+.clps-grp > .btn:first-child {
+  border-bottom-left-radius: 4px;
+  border-top-left-radius: 4px;
+}
+.clps-grp > span:first-child > select, .clps-grp > input:first-child {
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+}
+
+.clps-grp > .btn:last-child {
+  border-bottom-right-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.clps-grp > span:last-child > select, .clps-grp > input:last-child {
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.clps-grp > .btn + .btn, .clps-grp > span > select + select, .clps-grp > input + .btn, .clps-grp > input + input {
+  margin-left: -1px;
+}
