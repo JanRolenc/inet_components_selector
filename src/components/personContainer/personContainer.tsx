@@ -1,29 +1,28 @@
-import React from "react";
-import { IPersons, FormatOptionLabelMeta } from "../../Interfaces/interfaces";
-import personalImage from "../../pictures/icon_head.png";
+import React from 'react'
+import { IPersons, FormatOptionLabelMeta } from '../../Interfaces/interfaces'
+import personalImage from '../../pictures/icon_head.png'
+import './personContainer.css'
 
 const PersonContainer = (
   { ...props }: IPersons,
-  formatpropsLabelMeta: FormatOptionLabelMeta
+  formatpropsLabelMeta: FormatOptionLabelMeta,
 ) => {
-  return formatpropsLabelMeta.context === "menu" ? (
+  return formatpropsLabelMeta.context === 'menu' ? (
     <div className="person-container">
-      <img src={personalImage} alt="icon" />
+      <img src={personalImage} alt="icon" loading="lazy" />
       <div className="person-details">
-        <span style={{ fontWeight: "bold" }}>
-          <a className="p-link">{props.label}</a>
-        </span>
+        <span style={{ fontWeight: 'bold' }}>{props.label}</span>
         <div>
           {props.status && props.status.zamestnanec.length > 0 ? (
             <span>
-              Zaměstnanec: {props.status.zamestnanec.map((zam) => zam + " ")}
+              Zaměstnanec: {props.status.zamestnanec.map((zam) => zam + ' ')}
             </span>
           ) : (
             false
           )}
           {props.status && props.status.student.length > 0 && (
             <span>
-              Student: {props.status.student.map((stud) => stud + " ")}
+              Student: {props.status.student.map((stud) => stud + ' ')}
             </span>
           )}
         </div>
@@ -31,9 +30,10 @@ const PersonContainer = (
       </div>
     </div>
   ) : (
-    <a href={"/s/k/" + props.id} className="p-link">
-      {props.label}
+    <a href={'/s/k/' + props.id} className="p-link" style={{ color: 'black' }}>
+      <div className="hover-item">{props.label}</div>
     </a>
-  );
-};
-export default PersonContainer;
+    // <a href={'/s/k/' + props.id}>{props.label}</a>
+  )
+}
+export default PersonContainer

@@ -1,0 +1,9 @@
+.hover-item {
+    color: black;
+    /* cursor: cell; */
+}
+
+.hover-item:hover {
+    color: inherit;
+    /* cursor: inherit; */
+}

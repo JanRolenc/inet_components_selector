@@ -1,187 +1,187 @@
-import React, { useState, useEffect } from "react";
-import Select from "react-select";
-import { IPersons, ISelector, State } from "../../Interfaces/interfaces";
-import "./selectorComponent.scss";
-import personContainer from "../personContainer/personContainer";
+import React, { useState, useEffect, ChangeEvent } from 'react'
+import Select from 'react-select'
+import { IPersons, ISelector } from '../../Interfaces/interfaces'
+import './selectorComponent.scss'
+import personContainer from '../personContainer/personContainer'
 
+// interface State {
+//   readonly isClearable: boolean
+// }
 function Selector({ required, disabled }: ISelector) {
   const [persons, setPersons] = useState<IPersons[]>([
     {
-      value: "jules verne",
+      value: 'jules verne',
       id: 1,
-      label: "Jules Verne",
-      name: "osoba",
+      label: 'Jules Verne',
+      name: 'jules verne',
       phone: 111111111,
-      status: { zamestnanec: ["ÚVT", "ÚVT"], student: ["FI", "FF"] },
+      status: { zamestnanec: ['ÚVT', 'ÚVT'], student: ['FI', 'FF'] },
     },
     {
-      value: "ota pavel",
+      value: 'ota pavel',
       id: 2,
-      label: "Ota Pavel",
-      name: "osoba",
+      label: 'Ota Pavel',
+      name: 'ota pavel',
       phone: 222222222,
-      status: { zamestnanec: ["MU", "PřF"], student: [] },
+      status: { zamestnanec: ['MU', 'PřF'], student: [] },
     },
     {
-      value: "bohumi hrabal",
+      value: 'bohumil hrabal',
       id: 3,
-      label: "Bohumil Hrabal",
-      name: "osoba",
+      label: 'Bohumil Hrabal',
+      name: 'bohumil hrabal',
       phone: 333333333,
-      status: { zamestnanec: [], student: ["ESF"] },
+      status: { zamestnanec: [], student: ['ESF'] },
     },
     {
-      value: "jan skácel",
+      value: 'jan skácel',
       id: 4,
-      label: "Jan Skácel",
-      name: "osoba",
+      label: 'Jan Skácel',
+      name: 'jan skácel',
       phone: 444444444,
-      status: { zamestnanec: ["MU", "PrF"], student: [] },
+      status: { zamestnanec: ['MU', 'PrF'], student: [] },
     },
     {
-      value: "Karel čapek",
+      value: 'karel čapek',
       id: 5,
-      label: "Karel Čapek",
-      name: "osoba",
+      label: 'Karel Čapek',
+      name: 'karel čapek',
       phone: 555555555,
-      status: { zamestnanec: ["MU", "FF"], student: ["FF"] },
+      status: { zamestnanec: ['MU', 'FF'], student: ['FF'] },
     },
     {
-      value: "arnošt lustig",
+      value: 'arnošt lustig',
       id: 6,
-      label: "Arnošt Lustig",
-      name: "osoba",
+      label: 'Arnošt Lustig',
+      name: 'arnošt lustig',
       phone: 666666666,
-      status: { zamestnanec: ["MU", "FSS"], student: ["FSS"] },
+      status: { zamestnanec: ['MU', 'FSS'], student: ['FSS'] },
     },
     {
-      value: "vladislav vančura",
+      value: 'vladislav vančura',
       id: 7,
-      label: "Vladislav Vančura",
-      name: "osoba",
+      label: 'Vladislav Vančura',
+      name: 'vladislav vančura',
       phone: 777777777,
-      status: { zamestnanec: ["MU", "FI"], student: [] },
+      status: { zamestnanec: ['MU', 'FI'], student: [] },
     },
     {
-      value: "karolina světlá",
+      value: 'karolina světlá',
       id: 8,
-      label: "Karolina Světlá",
-      name: "osoba",
+      label: 'Karolina Světlá',
+      name: 'karolina světlá',
       phone: 888888888,
-      status: { zamestnanec: ["MU", "PdF"], student: [] },
+      status: { zamestnanec: ['MU', 'PdF'], student: [] },
     },
     {
-      value: "alena mornštajnová",
+      value: 'alena mornštajnová',
       id: 9,
-      label: "Alena Mornštajnová",
-      name: "osoba",
+      label: 'Alena Mornštajnová',
+      name: 'alena mornštajnová',
       phone: 999999999,
-      status: { zamestnanec: ["MU", "FSpS"], student: [] },
+      status: { zamestnanec: ['MU', 'FSpS'], student: [] },
     },
     {
-      value: "božena němcová",
+      value: 'božena němcová',
       id: 10,
-      label: "Božena Němcová",
-      name: "osoba",
+      label: 'Božena Němcová',
+      name: 'božena němcová',
       phone: 111222333,
-      status: { zamestnanec: ["CEITEC", "CEITEC"], student: [] },
+      status: { zamestnanec: ['CEITEC', 'CEITEC'], student: [] },
     },
-  ]);
+  ])
   // const [persons, setPersons] = useState<IPersons[]>([]);
-  const [isCheckedZam, setIsCheckedZam] = useState(true);
-  const [isCheckedStu, setIsCheckedStu] = useState(true);
-  // const [options, setOptions] = useState<IPersons[]>([]);
+  const [isCheckedZam, setIsCheckedZam] = useState(true)
+  const [isCheckedStu, setIsCheckedStu] = useState(true)
+  const [storedOption, setStoredOption] = useState(null)
+  const [options, setOptions] = useState<IPersons[]>(persons) //kdyz nezavedu prom options (filtruju a prenastavuju rovnou persons), tak filtrovani checkboxy nefunguje;
 
   // const getPersons = () => {
-  //   fetch("data.json", {
+  //   fetch('data.json', {
   //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
+  //       'Content-Type': 'application/json',
+  //       Accept: 'application/json',
   //     },
   //   })
   //     .then(function (response) {
-  //       return response.json();
+  //       return response.json()
   //     })
   //     .then(function (persons) {
-  //       setPersons(persons);
-  //     });
-  // };
+  //       setPersons(persons)
+  //     })
+  // }
   // useEffect(() => {
-  //   getPersons();
-  // }, []);
+  //   getPersons()
+  // }, [])
 
   const onCheckboxStuChange = () => {
     isCheckedZam && !isCheckedStu
-      ? setPersons(persons)
+      ? setOptions(persons)
       : isCheckedZam && isCheckedStu
-      ? setPersons(persons.filter((p) => p.status.zamestnanec.length > 0))
+      ? setOptions(persons.filter((p) => p.status.zamestnanec.length > 0))
       : !isCheckedZam && isCheckedStu
-      ? setPersons(persons.filter((p) => p.status.student.length > 10))
-      : setPersons(persons.filter((p) => p.status.student.length > 0));
-    setIsCheckedStu(!isCheckedStu);
-  };
+      ? setOptions(persons.filter((p) => p.status.student.length > 10))
+      : setOptions(persons.filter((p) => p.status.student.length > 0))
+    setIsCheckedStu(!isCheckedStu)
+  }
   const onCheckboxZamChange = () => {
     !isCheckedZam && isCheckedStu
-      ? setPersons(persons)
+      ? setOptions(persons)
       : isCheckedZam && isCheckedStu
-      ? setPersons(persons.filter((p) => p.status.student.length > 0))
+      ? setOptions(persons.filter((p) => p.status.student.length > 0))
       : isCheckedZam && !isCheckedStu
-      ? setPersons(persons.filter((p) => p.status.zamestnanec.length > 10))
-      : setPersons(persons.filter((p) => p.status.zamestnanec.length > 0));
-    setIsCheckedZam(!isCheckedZam);
-  };
+      ? setOptions(persons.filter((p) => p.status.zamestnanec.length > 10))
+      : setOptions(persons.filter((p) => p.status.zamestnanec.length > 0))
+    setIsCheckedZam(!isCheckedZam)
+  }
+  const handleChange = (selectedOption: any) => {
+    setStoredOption(selectedOption)
+    console.log(selectedOption)
+    console.log(selectedOption.name)
+    console.log(storedOption)
+  }
   const personsStyles = {
-    control: (styles: any, { isFocused, isSelected }: any) => ({
+    control: (styles: any) => ({
       ...styles,
-      backgroundColor: required ? "#fcf4e3!important;" : undefined,
-      // border: "1px solid #9CB5CC",
-      borderRadius: "3px",
-      padding: "0px 3px",
-      minHeight: "auto",
-      zIndex: "auto",
-      // borderColor: isFocused ? "#E8B34A !important" : undefined,
-      // boxShadow: isFocused ? "0 0 5px #F1BB52" : "0 0 2px #9cb5cc inset",
+      // backgroundColor: required ? '#fcf4e3 !important;' : undefined,
+      // borderRadius: '3px',
+      // padding: '0px 3px',
+      minHeight: 'auto',
+      zIndex: 'auto',
+      width: '350px',
     }),
-    singleValue: (styles: any) => ({
-      ...styles,
-      zIndex: "1",
-    }),
-    menuList: (styles: any) => ({
-      ...styles,
-      color: "#555",
-      //      background: "#fcf4e3!important;",
-    }),
+    // singleValue: (styles: any, { isFocused }: any) => ({
+    //   ...styles,
+    //   zIndex: '1',
+    // }),
     option: (styles: any, { isFocused }: any) => ({
       ...styles,
-      fontWeight: "normal",
-      display: "block",
-      whiteSpace: "nowrap",
-      minHeight: "1.2em",
-      marginBottom: "5px",
-      marginTop: "5px",
-      padding: "0px 2px 1px",
-      lineHeight: "1.15",
-      backgroundColor: isFocused ? "#555" : undefined,
-      color: isFocused ? "white" : undefined,
+      backgroundColor: isFocused ? '#999' : undefined,
+      color: isFocused ? 'white' : undefined,
       zIndex: 1,
     }),
     menu: (styles: any) => ({
       ...styles,
-      color: "#555",
-      //      background: "#fcf4e3!important;",
+      color: '#555',
       zIndex: 100,
+      width: '350px',
     }),
+    //uzsi input
     dropdownIndicator: (styles: any) => ({
       ...styles,
-      padding: "3px",
+      padding: '3px',
     }),
-    valueContainer: (styles: any) => ({
+    IndicatorsContainer: (styles: any) => ({
       ...styles,
-      // opacity: 0,
-      color: "red",
-      border: "1px solid red",
+      zIndex: 10,
+      backgroundColor: 'blue',
     }),
-  };
+    // valueContainer: (styles: any) => ({
+    //   ...styles,
+    //   width: '200px',
+    //   backgroundColor: 'red',
+    // }),
+  }
   return (
     <div className="selector-container">
       <div className="checkboxes-container">
@@ -191,7 +191,7 @@ function Selector({ required, disabled }: ISelector) {
           name="zam"
           value="Zaměstnanec"
           checked={isCheckedZam}
-          onClick={onCheckboxZamChange}
+          onChange={onCheckboxZamChange}
         ></input>
         <label htmlFor="zam">
           Zaměstnanec<span></span>
@@ -201,25 +201,27 @@ function Selector({ required, disabled }: ISelector) {
           id="stud"
           name="stud"
           value="Student"
-          onClick={onCheckboxStuChange}
           checked={isCheckedStu}
+          onChange={onCheckboxStuChange}
         ></input>
         <label htmlFor="stud">Student</label>
       </div>
 
       <Select
-        classNamePrefix="select"
+        // classNamePrefix="select"
         placeholder="Vyhledej..."
-        options={persons}
+        options={options}
         formatOptionLabel={personContainer}
-        getOptionValue={(option) => "" + option.id}
+        getOptionValue={(option) => '' + option.id} //pomoci '' nemusime stringify
         isDisabled={disabled}
         isClearable={true}
-        menuIsOpen={true} //dropdown menu-list zustane rozevreny a da se lip zkoumat
+        // menuIsOpen={true} //dropdown menu-list zustane rozevreny a da se lip zkoumat
         styles={personsStyles}
+        onChange={handleChange}
       />
+      {/* <p>Vybrane jmeno: {selectedOption}</p> */}
     </div>
-  );
+  )
 }
 
-export default Selector;
+export default Selector

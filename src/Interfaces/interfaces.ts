@@ -21,10 +21,4 @@ export type FormatOptionLabelContext = "menu" | "value";
 export interface FormatOptionLabelMeta {
   context: FormatOptionLabelContext;
 }
-export interface State {
-  readonly isClearable: boolean;
-  readonly isDisabled: boolean;
-  readonly isLoading: boolean;
-  readonly isRtl: boolean;
-  readonly isSearchable: boolean;
-}
+
