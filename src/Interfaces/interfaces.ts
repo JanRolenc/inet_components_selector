@@ -1,7 +1,5 @@
-export interface IPersons {
-  readonly value: string;
+export interface IPerson {
   readonly id: number;
-  readonly label: string;
   readonly name: string;
   readonly phone: number;
   readonly status: Relationship;
@@ -10,6 +8,8 @@ export interface IPersons {
 export interface ISelector {
   readonly required: boolean;
   readonly disabled: boolean;
+  readonly name: string;
+  readonly selectedId?: number;
 }
 
 export interface Relationship {
@@ -20,5 +20,5 @@ export interface Relationship {
 export type FormatOptionLabelContext = "menu" | "value";
 export interface FormatOptionLabelMeta {
   context: FormatOptionLabelContext;
+  inputValue: string;
 }
-
