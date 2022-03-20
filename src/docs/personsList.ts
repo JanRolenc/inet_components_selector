@@ -1,4 +1,4 @@
-import { IPerson } from "../Interfaces/interfaces";
+import { IPerson } from "../interfaces/interfaces";
 
 export const personsList: IPerson[] = [
   {
