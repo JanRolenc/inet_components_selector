@@ -4,6 +4,14 @@ export interface IPerson {
   readonly phone: number;
   readonly status: Relationship;
 }
+export interface IUnit {
+  readonly id: string;
+  readonly nameCs: string;
+  readonly nameEn: string;
+  readonly shortCs: string;
+  readonly shortEn: string;
+  readonly color: string;
+}
 
 export interface ISelector {
   readonly required: boolean;
@@ -15,6 +23,7 @@ export interface ISelector {
 export interface Relationship {
   readonly zamestnanec: string[];
   readonly student: string[];
+  readonly zadnyVztah?: string;
 }
 
 export type FormatOptionLabelContext = "menu" | "value";
