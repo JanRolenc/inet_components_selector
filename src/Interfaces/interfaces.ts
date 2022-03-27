@@ -3,6 +3,7 @@ export interface IPerson {
   readonly name: string;
   readonly phone: number;
   readonly status: Relationship;
+  readonly fakulta: string[];
 }
 export interface IUnit {
   readonly id: string;

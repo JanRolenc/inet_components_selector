@@ -1,6 +1,7 @@
-import { IPerson } from "../interfaces/interfaces";
+// import { IPerson } from "../interfaces/interfaces";
 
-export const personsList: IPerson[] = [
+// export const personsList: IPerson[] = [
+  export const personsList= [
   {
     id: 1,
     name: "osoba",
