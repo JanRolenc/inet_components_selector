@@ -3,7 +3,7 @@ export interface IPerson {
   readonly name: string;
   readonly phone: number;
   readonly status: Relationship;
-  readonly fakulta: string[];
+  readonly unit: string[];
 }
 export interface IUnit {
   readonly id: string;
@@ -14,11 +14,16 @@ export interface IUnit {
   readonly color: string;
 }
 
-export interface ISelector {
+export interface IPersonsSelect {
   readonly required: boolean;
   readonly disabled: boolean;
   readonly name: string;
   readonly selectedId?: number;
+}
+export interface IUnitsSelect {
+  readonly unitsSelected: IUnit[];
+  readonly setUnitsSelected: (unitsSelected: IUnit[]) => void;
+  readonly setParentMenuOpen: (menuOpen: boolean | undefined) => void;
 }
 
 export interface Relationship {
