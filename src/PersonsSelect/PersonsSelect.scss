@@ -1,37 +1,42 @@
-.persons-filter-container {
-  width: 350px;
-  a {
-    color: black;
-    &:hover {
-      //nefunguje
-      cursor: pointer;
-      color: blue;
+.persons-select-container {
+    width: 400px;
+    a {
+        color: black;
+        &:hover {
+            //nefunguje
+            cursor: pointer;
+            color: blue;
+        }
     }
-  }
-  .person-container {
-    height: 100%;
-    display: flex;
-    align-items: center;
+    .person-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        img {
+            height: 100%;
+        }
+        .person-details {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+        }
+    }
+    .checkboxes-container {
+        width: 100%;
+        // border: 1px solid;
+        margin: 10px 0px;
+        display: flex;
+        align-items: center;
+        justify-content: right;
+    }
+    input {
+        box-shadow: none;
+        border: none;
+    }
     img {
-      height: 100%;
+        &:hover {
+            cursor: pointer;
+        }
     }
-    .person-details {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-    }
-  }
-  .checkboxes-container {
-    width: 100%;
-    // border: 1px solid;
-    margin: 10px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-  }
-  input {
-    box-shadow: none;
-    border: none;
-  }
 }

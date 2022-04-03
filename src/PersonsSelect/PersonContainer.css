@@ -7,3 +7,7 @@
     color: inherit;
     /* cursor: inherit; */
 }
+
+.person-details {
+    margin-left: 10px;
+}
