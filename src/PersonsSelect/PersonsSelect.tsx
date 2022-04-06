@@ -1,151 +1,151 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import Select, {
   InputActionMeta,
   components,
   IndicatorSeparatorProps,
-} from 'react-select'
-import { IPerson, IPersonsSelect, IUnit } from './interfaces/interfaces'
-import './PersonsSelect.scss'
-import PersonContainer from './PersonContainer'
-import UnitsFilter from './UnitsFilter'
+} from "react-select";
+import { IPerson, IPersonsSelect, IUnit } from "./interfaces/interfaces";
+import "./PersonsSelect.scss";
+import PersonContainer from "./PersonContainer";
+import UnitsFilter from "./UnitsFilter";
+import UnitsFilter2 from "./UnitsFilter2";
 
-import yellowStar from './pictures/yellow_star.png'
-import blackStar from './pictures/black_star.png'
+import yellowStar from "./pictures/yellow_star.png";
+import blackStar from "./pictures/black_star.png";
 
 export default function PersonsSelect({
   required,
   disabled,
   name,
   selectedId,
+  myId,
 }: IPersonsSelect) {
   const [persons, setPersons] = useState<IPerson[]>([
     {
       id: 1,
-      name: 'Jules Verne Favourite',
+      name: "Jules Verne",
       phone: 111111111,
-      status: { zamestnanec: ['ÚVT'], student: ['FI', 'FF'] },
-      unit: ['ÚVT', 'FI', 'FF'],
+      status: { zamestnanec: ["ÚVT"], student: ["FI", "FF"] },
+      unit: ["ÚVT", "FI", "FF"],
       favourite: true,
+      myId: 100,
     },
     {
       id: 2,
-      name: 'Ota Pavel Favourite',
+      name: "Ota Pavel",
       phone: 222222222,
-      status: { zamestnanec: ['PřF'], student: [] },
-      unit: ['PřF'],
+      status: { zamestnanec: ["PřF"], student: [] },
+      unit: ["PřF"],
       favourite: true,
+      myId: 200,
     },
     {
       id: 3,
-      name: 'Bohumil Hrabal Favourite',
+      name: "Bohumil Hrabal",
       phone: 333333333,
-      status: { zamestnanec: [], student: ['ESF'] },
-      unit: ['ESF'],
+      status: { zamestnanec: [], student: ["ESF"] },
+      unit: ["ESF"],
       favourite: true,
+      myId: 300,
     },
     {
       id: 4,
-      name: 'Jan Skácel',
+      name: "Jan Skácel",
       phone: 444444444,
-      status: { zamestnanec: ['PrF'], student: [] },
-      unit: ['PrF'],
+      status: { zamestnanec: ["PrF"], student: [] },
+      unit: ["PrF"],
       favourite: false,
+      myId: 400,
     },
     {
       id: 5,
-      name: 'Karel Čapek',
+      name: "Karel Čapek",
       phone: 555555555,
-      status: { zamestnanec: ['FF'], student: ['FF'] },
-      unit: ['FF'],
+      status: { zamestnanec: ["FF"], student: ["FF"] },
+      unit: ["FF"],
       favourite: false,
+      myId: 500,
     },
     {
       id: 6,
-      name: 'Arnošt Lustig',
+      name: "Arnošt Lustig",
       phone: 666666666,
-      status: { zamestnanec: ['FSS'], student: ['FSS'] },
-      unit: ['FSS'],
+      status: { zamestnanec: ["FSS"], student: ["FSS"] },
+      unit: ["FSS"],
       favourite: false,
+      myId: 600,
     },
     {
       id: 7,
-      name: 'Vladislav Vančura',
+      name: "Vladislav Vančura",
       phone: 777777777,
-      status: { zamestnanec: ['FI'], student: [] },
-      unit: ['FI'],
+      status: { zamestnanec: ["FI"], student: [] },
+      unit: ["FI"],
       favourite: false,
+      myId: 700,
     },
     {
       id: 8,
-      name: 'Karolina Světlá',
+      name: "Karolina Světlá",
       phone: 888888888,
-      status: { zamestnanec: ['PdF'], student: [] },
-      unit: ['PdF'],
+      status: { zamestnanec: ["PdF"], student: [] },
+      unit: ["PdF"],
       favourite: false,
+      myId: 800,
     },
     {
       id: 9,
-      name: 'Alena Mornštajnová',
+      name: "Alena Mornštajnová",
       phone: 999999999,
-      status: { zamestnanec: ['FSpS'], student: [] },
-      unit: ['FSpS'],
+      status: { zamestnanec: ["FSpS"], student: [] },
+      unit: ["FSpS"],
       favourite: false,
+      myId: 900,
     },
     {
       id: 10,
-      name: 'Božena Němcová',
+      name: "Božena Němcová",
       phone: 111222333,
-      status: { zamestnanec: ['CEITEC'], student: [] },
-      unit: ['CEITEC'],
+      status: { zamestnanec: ["CEITEC"], student: [] },
+      unit: ["CEITEC"],
       favourite: false,
+      myId: 1000,
     },
     {
       id: 11,
-      name: 'Ani student, ani zamestnanec',
+      name: "Ani student, ani zamestnanec",
       phone: 0,
-      status: { zamestnanec: [], student: [], zadnyVztah: 'lobbista' },
+      status: { zamestnanec: [], student: [], zadnyVztah: "lobbista" },
       unit: [],
       favourite: false,
-    },
-  ])
-  const [personsFavourite, setPersonsFavourite] = useState<IPerson[]>([
-    {
-      id: 1,
-      name: 'Jules Verne Favourite',
-      phone: 111111111,
-      status: { zamestnanec: ['ÚVT'], student: ['FI', 'FF'] },
-      unit: ['ÚVT', 'FI', 'FF'],
-      favourite: true,
+      myId: 1100,
     },
     {
-      id: 2,
-      name: 'Ota Pavel Favourite',
-      phone: 222222222,
-      status: { zamestnanec: ['PřF'], student: [] },
-      unit: ['PřF'],
+      id: 12,
+      name: "Zdeněk Machač",
+      phone: 22222111,
+      status: { zamestnanec: ["ÚVT"], student: [] },
+      unit: ["FI"],
       favourite: true,
+      myId: 1200,
     },
-    {
-      id: 3,
-      name: 'Bohumil Hrabal Favourite',
-      phone: 333333333,
-      status: { zamestnanec: [], student: ['ESF'] },
-      unit: ['ESF'],
-      favourite: true,
-    },
-  ])
-  const [optionsPersons, setOptionsPersons] = useState<IPerson[]>([])
-  const [selectedPerson, setSelectedPerson] = useState<IPerson | null>(null)
+  ]);
 
-  const [searchValue, setSearchValue] = useState<string>('')
-  const [isCheckedZam, setIsCheckedZam] = useState(true)
-  const [isCheckedStud, setIsCheckedStud] = useState(true)
+  const [optionsPersons, setOptionsPersons] = useState<IPerson[]>([]);
+  const [selectedPerson, setSelectedPerson] = useState<IPerson | null>(
+    persons.filter((p) => p.id === selectedId)[0]
+  );
+  const [myLabel, setMyLabel] = useState<IPerson[]>([]);
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [isCheckedZam, setIsCheckedZam] = useState(true);
+  const [isCheckedStud, setIsCheckedStud] = useState(true);
 
-  const [unitsSelected, setUnitsSelected] = useState<IUnit[]>([])
+  const [unitsSelected, setUnitsSelected] = useState<IUnit[]>([]);
+  const [unitValue, setUnitValue] = useState<string>("Vyber fakulty");
 
-  const [menuIsOpen, setMenuIsOpen] = useState<boolean | undefined>(undefined)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [toggledStar, setToggledStar] = useState<boolean>(true)
+  const [menuIsOpen, setMenuIsOpen] = useState<boolean | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [toggledStar, setToggledStar] = useState<boolean>(true);
 
   // const handleChange = (person: IPerson | null) => {
   //   setSelectedValuePerson(person);
@@ -172,20 +172,20 @@ export default function PersonsSelect({
   const personsStyles = {
     control: (styles: any) => ({
       ...styles,
-      minHeight: 'auto',
+      minHeight: "auto",
       //zajisti uzsi cely input
       // zIndex: "auto",//???
       // width: "350px",//sirka je upravena v nadrazenem persons-select-container
     }),
     indicatorsContainer: (styles: any) => ({
       ...styles,
-      display: 'flex',
-      flexDirection: 'row',
+      display: "flex",
+      flexDirection: "row",
     }),
     option: (styles: any, { isFocused }: any) => ({
       ...styles,
-      backgroundColor: isFocused ? '#999' : undefined,
-      color: isFocused ? 'white' : undefined,
+      backgroundColor: isFocused ? "#999" : undefined,
+      color: isFocused ? "white" : undefined,
       zIndex: 1,
     }),
     //mohlo by se asi zrusit
@@ -197,19 +197,19 @@ export default function PersonsSelect({
     // }),
     dropdownIndicator: (styles: any) => ({
       ...styles,
-      padding: '3px', //zajisti uzsi cely input
+      padding: "3px", //zajisti uzsi cely input
     }),
     clearIndicator: (styles: any) => ({
       ...styles,
-      padding: '3px', //zajisti uzsi cely input
+      padding: "3px", //zajisti uzsi cely input
     }),
-  }
+  };
 
   const filterPersons = (
     srchValPer: string,
     zam: boolean,
     stud: boolean,
-    unitsSel: IUnit[],
+    unitsSel: IUnit[]
   ): IPerson[] => {
     return persons.filter(
       (i) =>
@@ -218,114 +218,142 @@ export default function PersonsSelect({
           unitsSel.some((u) => i.unit.includes(u.shortCs))) &&
         ((!zam && !stud) ||
           (zam && i.status.zamestnanec.length > 0) ||
-          (stud && i.status.student.length > 0)),
-    )
-  }
+          (stud && i.status.student.length > 0))
+    );
+  };
+
   const searchPersonsAsync = (
     srchValPer: string,
     zam: boolean,
     stud: boolean,
-    unitsSel: IUnit[],
+    unitsSel: IUnit[]
   ) => {
     if (!srchValPer && srchValPer.length < 1) {
       //tady pozdeji nastavime <2
-      // setOptionsPersons([])
-      setOptionsPersons(personsFavourite)
+      // setOptionsPersons([]);
+      setOptionsPersons(persons.filter((p) => p.favourite === true));
     } else {
-      setIsLoading(true)
+      setIsLoading(true);
       new Promise<IPerson[]>((resolve) => {
         setTimeout(
           () => resolve(filterPersons(srchValPer, zam, stud, unitsSel)),
-          500,
-        )
+          500
+        );
       })
         .then((loadedPersons) => {
-          setOptionsPersons(loadedPersons)
+          setOptionsPersons(loadedPersons);
         })
         .catch((error) => {
-          console.error(error)
+          console.error(error);
         })
-        .finally(() => setIsLoading(false))
+        .finally(() => setIsLoading(false));
     }
-  }
+  };
 
   const onCheckboxStudChange = () => {
-    const newIsChecked = !isCheckedStud
-    setIsCheckedStud(newIsChecked)
-    searchPersonsAsync(searchValue, isCheckedZam, newIsChecked, unitsSelected)
-  }
+    const newIsChecked = !isCheckedStud;
+    setIsCheckedStud(newIsChecked);
+    searchPersonsAsync(searchValue, isCheckedZam, newIsChecked, unitsSelected);
+  };
   const onCheckboxZamChange = () => {
-    const newIsChecked = !isCheckedZam
-    setIsCheckedZam(newIsChecked)
-    searchPersonsAsync(searchValue, newIsChecked, isCheckedStud, unitsSelected)
-  }
-  const starOnClick = () => {
-    setToggledStar(!toggledStar)
-  }
+    const newIsChecked = !isCheckedZam;
+    setIsCheckedZam(newIsChecked);
+    searchPersonsAsync(searchValue, newIsChecked, isCheckedStud, unitsSelected);
+  };
+  //NEFUNGUJE
+  // const personsInputStarClick = () => {
+  //   alert("you cliked");
+  //   setToggledStar(!toggledStar);
+  //   console.log(toggledStar);
+  //   // persons.find(p => p.name === selectedPerson.name)
+  //   // var isFavourite = selectedPerson?.favourite;
+  //   // console.log("isFavourite", isFavourite);
+  //   // isFavourite = !isFavourite;
+  //   // console.log("isFavourite", isFavourite);
+  // };
   const IndicatorsContainer = (props: any) => {
     return (
       <components.IndicatorsContainer {...props}>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <img
-            style={{
-              height: '13px',
-              margin: 'auto 8px auto auto',
-              opacity: '0.5',
-            }}
-            src={toggledStar ? yellowStar : blackStar}
-            alt="star"
-            onClick={starOnClick}
-          />
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          {selectedPerson && (
+            <img
+              style={{
+                height: "13px",
+                margin: "auto 8px auto auto",
+                opacity: "0.5",
+              }}
+              src={selectedPerson.favourite ? yellowStar : blackStar}
+              alt="star"
+              // onClick={personsInputStarClick}NEFUNGUJE
+            />
+          )}
           <span className=" css-1okebmr-indicatorSeparator"></span>
           {props.children}
         </div>
       </components.IndicatorsContainer>
-    )
-  }
-
+    );
+  };
+  const selfSelection = () => {
+    setOptionsPersons(persons.filter((p) => p.myId === myId));
+    // setMyLabel(optionsPersons[0]);
+  };
+  const handleChangeUnit = (event: any) => {
+    setUnitValue(event.target.value);
+  };
   const Menu = (props: any) => {
     return (
       <components.Menu {...props}>
-        <div className="checkboxes-container">
-          <input
-            type="checkbox"
-            id="zam"
-            name="zam"
-            checked={isCheckedZam}
-            onChange={onCheckboxZamChange}
-          ></input>
-          <label htmlFor="zam">
-            Zaměstnanec<span></span>
-          </label>
-          <input
-            type="checkbox"
-            id="stud"
-            name="stud"
-            checked={isCheckedStud}
-            onChange={onCheckboxStudChange}
-          ></input>
-          <label htmlFor="stud">Student</label>
+        <div className="menu-buttons-container">
+          <button onClick={selfSelection}>Vyber sám sebe</button>
+          <div className="checkboxes-container">
+            <input
+              type="checkbox"
+              id="zam"
+              name="zam"
+              checked={isCheckedZam}
+              onChange={onCheckboxZamChange}
+            ></input>
+            <label htmlFor="zam">
+              Zaměstnanec<span></span>
+            </label>
+            <input
+              type="checkbox"
+              id="stud"
+              name="stud"
+              checked={isCheckedStud}
+              onChange={onCheckboxStudChange}
+            ></input>
+            <label htmlFor="stud">Student</label>
+          </div>
         </div>
         <UnitsFilter
           unitsSelected={unitsSelected}
           setUnitsSelected={(unitsSel: IUnit[]) => {
-            setUnitsSelected(unitsSel)
+            setUnitsSelected(unitsSel);
             searchPersonsAsync(
               searchValue,
               isCheckedZam,
               isCheckedStud,
-              unitsSel,
-            )
+              unitsSel
+            );
           }}
           setParentMenuOpen={setMenuIsOpen}
         />
-        <div style={{ margin: '10px auto 5px 10px' }}>Nalezené osoby:</div>
+        {/* <UnitsFilter2 unitValue={unitValue} handleChange={handleChangeUnit} /> */}
+        {/* <UnitsFilter2 /> */}
+
+        {optionsPersons.every(
+          (p) => p.myId === myId
+        ) ? null : optionsPersons.every((p) => p.favourite) ? (
+          <div style={{ margin: "10px auto 5px 10px" }}>Oblíbené osoby:</div>
+        ) : (
+          <div style={{ margin: "10px auto 5px 10px" }}>Nalezené osoby:</div>
+        )}
         <div>{props.children}</div>
       </components.Menu>
-    )
-  }
-  console.log('menuIsOpen', menuIsOpen)
-
+    );
+  };
+  const getDefaultValue = () => {};
   return (
     <div
       className="persons-select-container"
@@ -334,35 +362,37 @@ export default function PersonsSelect({
       <input
         type="hidden"
         name={name}
-        value={selectedPerson ? selectedPerson.id : ''}
+        value={selectedPerson ? selectedPerson.id : ""}
       />
+      {/* <UnitsFilter2 unitValue={unitValue} handleChange={handleChangeUnit} /> */}
       <Select
         defaultValue={persons.filter((p) => p.id === selectedId)[0]} //proc je tady [0]? - protoze filter vraci pro kazde (p) pole, i kdyz je v nem jen jeden objekt a my chceme jen objekt
         placeholder="Vyhledej osobu (alespoň 2 písmena) ..."
         components={{ Menu, IndicatorsContainer }}
         options={optionsPersons}
-        getOptionValue={(option) => '' + option.id} //pomoci '' nemusime stringify
+        getOptionValue={(option) => "" + option.id} //pomoci '' nemusime stringify
         formatOptionLabel={PersonContainer}
+        // getOptionLabel={option => }
         isDisabled={disabled}
         isSearchable={true}
         isClearable={true}
         // menuIsOpen={menuIsOpen}
         menuIsOpen={true}
         styles={personsStyles}
-        //  onChange={handleChange}
+        onChange={(person) => setSelectedPerson(person)}
         inputValue={searchValue}
         onInputChange={(newValue: string, action: InputActionMeta) => {
           if (
-            action.action !== 'input-blur' &&
-            action.action !== 'menu-close'
+            action.action !== "input-blur" &&
+            action.action !== "menu-close"
           ) {
-            setSearchValue(newValue)
+            setSearchValue(newValue);
             searchPersonsAsync(
               newValue,
               isCheckedZam,
               isCheckedStud,
-              unitsSelected,
-            )
+              unitsSelected
+            );
           }
         }}
         onFocus={() =>
@@ -371,12 +401,12 @@ export default function PersonsSelect({
             searchValue,
             isCheckedZam,
             isCheckedStud,
-            unitsSelected,
+            unitsSelected
           )
         }
         filterOption={() => true} // filtrovano v async funkci
         isLoading={isLoading} //featura loading... zobrazi se v menu
       />
     </div>
-  )
+  );
 }
