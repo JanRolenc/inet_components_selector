@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Select, {
   InputActionMeta,
   components,
   IndicatorSeparatorProps,
 } from "react-select";
-import { IPerson, IPersonsSelect, IUnit } from "./interfaces/interfaces";
+import {
+  IPerson,
+  IPersonsSelect,
+  IUnit,
+  OptionsMode,
+} from "./interfaces/interfaces";
 import "./PersonsSelect.scss";
 import PersonContainer from "./PersonContainer";
 import UnitsFilter from "./UnitsFilter";
-import UnitsFilter2 from "./UnitsFilter2";
+import UnitsFilterCustom from "./UnitsFilterCustom";
+import "./UnitsFilterCustom.scss";
 
 import yellowStar from "./pictures/yellow_star.png";
 import blackStar from "./pictures/black_star.png";
@@ -135,7 +141,10 @@ export default function PersonsSelect({
   const [selectedPerson, setSelectedPerson] = useState<IPerson | null>(
     persons.filter((p) => p.id === selectedId)[0]
   );
-  const [myLabel, setMyLabel] = useState<IPerson[]>([]);
+  const [optionsMode, setOptionsMode] = useState<OptionsMode>(
+    OptionsMode.FAVOURITE
+  );
+  const [myLabel, setMyLabel] = useState<boolean>(false);
   const [searchValue, setSearchValue] = useState<string>("");
   const [isCheckedZam, setIsCheckedZam] = useState(true);
   const [isCheckedStud, setIsCheckedStud] = useState(true);
@@ -145,7 +154,7 @@ export default function PersonsSelect({
 
   const [menuIsOpen, setMenuIsOpen] = useState<boolean | undefined>(undefined);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [toggledStar, setToggledStar] = useState<boolean>(true);
+  const [toggledStar, setToggledStar] = useState<boolean>();
 
   // const handleChange = (person: IPerson | null) => {
   //   setSelectedValuePerson(person);
@@ -205,6 +214,8 @@ export default function PersonsSelect({
     }),
   };
 
+  const selectRef = useRef<any>(null);
+
   const filterPersons = (
     srchValPer: string,
     zam: boolean,
@@ -231,9 +242,11 @@ export default function PersonsSelect({
     if (!srchValPer && srchValPer.length < 1) {
       //tady pozdeji nastavime <2
       // setOptionsPersons([]);
+      setOptionsMode(OptionsMode.FAVOURITE);
       setOptionsPersons(persons.filter((p) => p.favourite === true));
     } else {
       setIsLoading(true);
+      setOptionsMode(OptionsMode.SEARCH);
       new Promise<IPerson[]>((resolve) => {
         setTimeout(
           () => resolve(filterPersons(srchValPer, zam, stud, unitsSel)),
@@ -260,17 +273,21 @@ export default function PersonsSelect({
     setIsCheckedZam(newIsChecked);
     searchPersonsAsync(searchValue, newIsChecked, isCheckedStud, unitsSelected);
   };
-  //NEFUNGUJE
-  // const personsInputStarClick = () => {
-  //   alert("you cliked");
-  //   setToggledStar(!toggledStar);
-  //   console.log(toggledStar);
-  //   // persons.find(p => p.name === selectedPerson.name)
-  //   // var isFavourite = selectedPerson?.favourite;
-  //   // console.log("isFavourite", isFavourite);
-  //   // isFavourite = !isFavourite;
-  //   // console.log("isFavourite", isFavourite);
-  // };
+
+  const personsInputStarClick = () => {
+    if (selectedPerson) {
+      const newPersons = persons.map((p) => {
+        if (p.id === selectedPerson.id) {
+          const newP = { ...p, favourite: !p.favourite };
+          setSelectedPerson(newP);
+          return newP;
+        }
+        return p;
+      });
+      setPersons(newPersons);
+    }
+  };
+
   const IndicatorsContainer = (props: any) => {
     return (
       <components.IndicatorsContainer {...props}>
@@ -284,7 +301,7 @@ export default function PersonsSelect({
               }}
               src={selectedPerson.favourite ? yellowStar : blackStar}
               alt="star"
-              // onClick={personsInputStarClick}NEFUNGUJE
+              onClick={personsInputStarClick}
             />
           )}
           <span className=" css-1okebmr-indicatorSeparator"></span>
@@ -293,18 +310,22 @@ export default function PersonsSelect({
       </components.IndicatorsContainer>
     );
   };
-  const selfSelection = () => {
-    setOptionsPersons(persons.filter((p) => p.myId === myId));
-    // setMyLabel(optionsPersons[0]);
+  const meSelection = () => {
+    //setOptionsPersons(persons.filter((p) => p.myId === myId));
+    setSelectedPerson(persons.filter((p) => p.myId === myId)[0]);
+    // console.log(selectedPerson);
+    setOptionsMode(OptionsMode.ME);
+    //    setMenuIsOpen(false);
+    selectRef.current?.blur();
   };
-  const handleChangeUnit = (event: any) => {
-    setUnitValue(event.target.value);
-  };
+  // const handleChangeUnit = (event: string) => {
+  //   setUnitValue(event.target.value);
+  // };
   const Menu = (props: any) => {
     return (
       <components.Menu {...props}>
         <div className="menu-buttons-container">
-          <button onClick={selfSelection}>Vyber sám sebe</button>
+          <button onClick={meSelection}>Vyber sám sebe</button>
           <div className="checkboxes-container">
             <input
               type="checkbox"
@@ -326,7 +347,21 @@ export default function PersonsSelect({
             <label htmlFor="stud">Student</label>
           </div>
         </div>
-        <UnitsFilter
+        <UnitsFilterCustom
+        // unitsSelected={unitsSelected}
+        // setUnitsSelected={(unitsSel: IUnit[]) => {
+        //   setUnitsSelected(unitsSel);
+        //   searchPersonsAsync(
+        //     searchValue,
+        //     isCheckedZam,
+        //     isCheckedStud,
+        //     unitsSel
+        //   );
+        // }}
+        // unitValue={unitValue}
+        // onChange={handleChangeUnit}
+        />
+        {/* <UnitsFilter
           unitsSelected={unitsSelected}
           setUnitsSelected={(unitsSel: IUnit[]) => {
             setUnitsSelected(unitsSel);
@@ -336,19 +371,17 @@ export default function PersonsSelect({
               isCheckedStud,
               unitsSel
             );
-          }}
-          setParentMenuOpen={setMenuIsOpen}
-        />
-        {/* <UnitsFilter2 unitValue={unitValue} handleChange={handleChangeUnit} /> */}
-        {/* <UnitsFilter2 /> */}
+          }} */}
+        {/* setParentMenuOpen={setMenuIsOpen}
+        /> */}
 
-        {optionsPersons.every(
-          (p) => p.myId === myId
-        ) ? null : optionsPersons.every((p) => p.favourite) ? (
-          <div style={{ margin: "10px auto 5px 10px" }}>Oblíbené osoby:</div>
-        ) : (
-          <div style={{ margin: "10px auto 5px 10px" }}>Nalezené osoby:</div>
-        )}
+        {
+          optionsMode === OptionsMode.FAVOURITE ? (
+            <div style={{ margin: "10px auto 5px 10px" }}>Oblíbené osoby:</div>
+          ) : optionsMode === OptionsMode.SEARCH ? (
+            <div style={{ margin: "10px auto 5px 10px" }}>Nalezené osoby:</div>
+          ) : null // OptionsMode.ME
+        }
         <div>{props.children}</div>
       </components.Menu>
     );
@@ -363,10 +396,10 @@ export default function PersonsSelect({
         type="hidden"
         name={name}
         value={selectedPerson ? selectedPerson.id : ""}
-      />
-      {/* <UnitsFilter2 unitValue={unitValue} handleChange={handleChangeUnit} /> */}
+      />{" "}
       <Select
-        defaultValue={persons.filter((p) => p.id === selectedId)[0]} //proc je tady [0]? - protoze filter vraci pro kazde (p) pole, i kdyz je v nem jen jeden objekt a my chceme jen objekt
+        ref={selectRef}
+        value={selectedPerson} //proc je tady [0]? - protoze filter vraci pro kazde (p) pole, i kdyz je v nem jen jeden objekt a my chceme jen objekt
         placeholder="Vyhledej osobu (alespoň 2 písmena) ..."
         components={{ Menu, IndicatorsContainer }}
         options={optionsPersons}
@@ -395,15 +428,16 @@ export default function PersonsSelect({
             );
           }
         }}
-        onFocus={() =>
+        onFocus={() => {
           //spusti filterPersons
           searchPersonsAsync(
             searchValue,
             isCheckedZam,
             isCheckedStud,
             unitsSelected
-          )
-        }
+          );
+          //          setMenuIsOpen(true);
+        }}
         filterOption={() => true} // filtrovano v async funkci
         isLoading={isLoading} //featura loading... zobrazi se v menu
       />

@@ -1,0 +1,127 @@
+.unit-select-container {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-color: rgb(204, 204, 204);
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-sizing: border-box;
+
+  .input-container {
+    width: 100%;
+    // -webkit-box-align: center;
+    // align-items: center;
+    // display: flex;
+    // flex-direction: row;
+    // // flex-wrap: wrap;
+    // padding: 8px;
+    // position: relative;
+    // overflow: hidden;
+    // box-sizing: border-box;
+    .unit-container-input {
+      display: inline-block;
+      padding: 10px 8px;
+      background-color: rgb(230, 230, 230);
+      border-radius: 2px;
+      // display: flex;
+      margin: 10px 5px 10px 8px;
+      min-width: 0px;
+      box-sizing: border-box;
+      // width: auto;
+      //   display: flex;
+      //   padding: 10px 8px;
+      //   flex-direction: row;
+      //   justify-content: left;
+      //   align-items: center;
+      //   &:hover {
+      //     cursor: default;
+      //     font-weight: bold;
+      //     background: gray;
+      //     color: white;
+      //   }
+    }
+  }
+  .indicators-container {
+    -webkit-box-align: center;
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .clear-indicator {
+      display: flex;
+      padding: 3px;
+      box-sizing: border-box;
+      opacity: 0.2;
+      transition: opacity 150ms ease 0s;
+      &:hover {
+        opacity: 0.4;
+      }
+    }
+
+    .indicator-separator {
+      align-self: stretch;
+      background-color: rgb(204, 204, 204);
+      margin-bottom: 8px;
+      margin-top: 8px;
+      width: 1px;
+      box-sizing: border-box;
+    }
+    .dropdown-indicator {
+      color: rgb(204, 204, 204);
+      display: flex;
+      padding: 3px;
+      opacity: 0.2;
+      transition: opacity 150ms ease 0s;
+      &:hover {
+        opacity: 0.4;
+      }
+    }
+  }
+}
+.popup-container {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-bottom: 4px;
+  padding-top: 4px;
+  position: relative;
+  box-sizing: border-box;
+  text-align: left;
+  border-color: #4e5458;
+  color: #181a1b;
+
+  .unit-container-menu {
+    //    display: flex;
+    display: inline-block;
+    padding: 10px 8px;
+    //    justify-content: left;
+    //    align-items: center;
+    &:hover {
+      cursor: default;
+      font-weight: bold;
+      background: gray;
+      color: white;
+    }
+    .clear-indicator-unit {
+      -webkit-box-align: center;
+      align-items: center;
+      border-radius: 2px;
+      display: flex;
+      padding-left: 4px;
+      padding-right: 4px;
+      box-sizing: border-box;
+      &:hover {
+        background-color: chocolate;
+      }
+    }
+  }
+}

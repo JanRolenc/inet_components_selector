@@ -16,6 +16,12 @@ export interface IUnit {
   readonly color: string;
 }
 
+export enum OptionsMode {
+  ME,
+  FAVOURITE,
+  SEARCH,
+}
+
 export interface IPersonsSelect {
   readonly required: boolean;
   readonly disabled: boolean;
@@ -28,9 +34,9 @@ export interface IUnitsFilter {
   readonly setUnitsSelected: (unitsSelected: IUnit[]) => void;
   readonly setParentMenuOpen: (menuOpen: boolean | undefined) => void;
 }
-export interface IUnitsFilter2 {
-  // readonly unitsSelected: IUnit[];
-  // readonly setUnitsSelected: (unitsSelected: IUnit[]) => void;
+export interface IUnitsFilterCustom {
+  readonly unitsSelected: IUnit[];
+  readonly setUnitsSelected: (unitsSelected: IUnit[]) => void;
   readonly unitValue: string;
 }
 

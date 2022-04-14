@@ -8,7 +8,7 @@ ReactDOM.render(
     name="pers"
     required={false}
     disabled={false}
-    selectedId={5}
+    selectedId={3}
     myId={1200}
   />,
   document.getElementById("root")
