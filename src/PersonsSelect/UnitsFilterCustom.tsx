@@ -1,39 +1,48 @@
-import React, { Component, useState } from "react";
-import { units } from "./docs/units";
-import Select from "react-select";
-import OptionMenu from "./OptionMenu";
-import OptionInput from "./OptionInput";
-import { IUnit, IUnitsFilterCustom } from "./interfaces/interfaces";
+import React, { Component, useState } from 'react'
+import { units } from './docs/units'
+import Select from 'react-select'
+import OptionMenu from './OptionMenu'
+import OptionInput from './OptionInput'
+import { IUnit, IUnitsFilterCustom } from './interfaces/interfaces'
 
 function UnitsFilterCustom() {
-  const [popUpClicked, setPopUpClicked] = useState(false);
-  const [unitsList, setUnitsList] = useState<IUnit[]>(units);
-  const [selectedUnits, setSelectedUnits] = useState<IUnit[]>([]);
+  const [popUpClicked, setPopUpClicked] = useState(false)
+  const [unitsList, setUnitsList] = useState<IUnit[]>(units)
+  const [selectedUnits, setSelectedUnits] = useState<IUnit[]>([])
 
   const onClickPopUp = () => {
-    setPopUpClicked(!popUpClicked);
-  };
-  const onClickSelectUnit = (unitId: string) => {
-    setUnitsList(unitsList.filter((u) => u.id !== unitId));
-    const selectedUnit = unitsList.filter((u) => u.id === unitId)[0];
-    setSelectedUnits([...selectedUnits, selectedUnit]);
-    console.log(selectedUnit);
-  };
+    setPopUpClicked(!popUpClicked)
+  }
+  const onClickUnitMenu = (unitId: string) => {
+    setUnitsList(unitsList.filter((u) => u.id !== unitId))
+    const selectedUnitMenu = unitsList.filter((u) => u.id === unitId)[0]
+    setSelectedUnits([...selectedUnits, selectedUnitMenu])
+    console.log(selectedUnitMenu)
+  }
+  const onClickUnitInputClearIndicator = (unitId: string) => {
+    setSelectedUnits(selectedUnits.filter((u) => u.id !== unitId))
+    const selectedUnitInput = units.filter((u) => u.id === unitId)[0]
+    setUnitsList([...unitsList, selectedUnitInput])
+  }
+
   return (
     <div>
       <div className="unit-select-container">
         <div className="input-container">
-          {selectedUnits
-            ? selectedUnits.map((unit: IUnit, key: number) => (
-                <OptionInput
-                  key={key}
-                  unit={unit}
-                  onClickSelectUnit={(event) => onClickSelectUnit(event)}
-                />
-              ))
-            : null}
+          {selectedUnits.length > 0 ? (
+            selectedUnits.map((unit: IUnit, key: number) => (
+              <OptionInput
+                key={key}
+                unit={unit}
+                onClickUnitInputClearIndicator={(id) =>
+                  onClickUnitInputClearIndicator(id)
+                }
+              />
+            ))
+          ) : (
+            <span>Vyber fakultu...</span>
+          )}
         </div>
-        &#160;&#160;
         <div className="indicators-container">
           <div className="clear-indicator">
             <svg>
@@ -55,14 +64,14 @@ function UnitsFilterCustom() {
                 <OptionMenu
                   key={key}
                   unit={unit}
-                  onClickSelectUnit={(event) => onClickSelectUnit(event)}
+                  onClickUnitMenu={(id) => onClickUnitMenu(id)}
                 />
               ))
             : null}
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default UnitsFilterCustom;
+export default UnitsFilterCustom
