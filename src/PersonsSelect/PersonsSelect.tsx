@@ -144,13 +144,11 @@ export default function PersonsSelect({
   const [optionsMode, setOptionsMode] = useState<OptionsMode>(
     OptionsMode.FAVOURITE,
   )
-  const [myLabel, setMyLabel] = useState<boolean>(false)
   const [searchValue, setSearchValue] = useState<string>('')
   const [isCheckedZam, setIsCheckedZam] = useState(true)
   const [isCheckedStud, setIsCheckedStud] = useState(true)
 
   const [unitsSelected, setUnitsSelected] = useState<IUnit[]>([])
-  const [unitValue, setUnitValue] = useState<string>('Vyber fakulty')
 
   const [menuIsOpen, setMenuIsOpen] = useState<boolean | undefined>(undefined)
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -348,18 +346,16 @@ export default function PersonsSelect({
           </div>
         </div>
         <UnitsFilterCustom
-        // unitsSelected={unitsSelected}
-        // setUnitsSelected={(unitsSel: IUnit[]) => {
-        //   setUnitsSelected(unitsSel);
-        //   searchPersonsAsync(
-        //     searchValue,
-        //     isCheckedZam,
-        //     isCheckedStud,
-        //     unitsSel
-        //   );
-        // }}
-        // unitValue={unitValue}
-        // onChange={handleChangeUnit}
+          unitsSelected={unitsSelected}
+          setUnitsSelected={(unitsSel: IUnit[]) => {
+            setUnitsSelected(unitsSel)
+            searchPersonsAsync(
+              searchValue,
+              isCheckedZam,
+              isCheckedStud,
+              unitsSel,
+            )
+          }}
         />
         {/* <UnitsFilter
           unitsSelected={unitsSelected}
@@ -409,8 +405,8 @@ export default function PersonsSelect({
         isDisabled={disabled}
         isSearchable={true}
         isClearable={true}
-        // menuIsOpen={menuIsOpen}
-        menuIsOpen={true}
+        menuIsOpen={menuIsOpen}
+        // menuIsOpen={true}
         styles={personsStyles}
         onChange={(person) => setSelectedPerson(person)}
         inputValue={searchValue}

@@ -5,10 +5,12 @@ import OptionMenu from './OptionMenu'
 import OptionInput from './OptionInput'
 import { IUnit, IUnitsFilterCustom } from './interfaces/interfaces'
 
-function UnitsFilterCustom() {
+function UnitsFilterCustom({
+  unitsSelected,
+  setUnitsSelected,
+}: IUnitsFilterCustom) {
   const [popUpClicked, setPopUpClicked] = useState(false)
   const [unitsList, setUnitsList] = useState<IUnit[]>(units)
-  const [selectedUnits, setSelectedUnits] = useState<IUnit[]>([])
 
   const onClickPopUp = () => {
     setPopUpClicked(!popUpClicked)
@@ -16,26 +18,30 @@ function UnitsFilterCustom() {
   const onClickUnitMenu = (unitId: string) => {
     setUnitsList(unitsList.filter((u) => u.id !== unitId))
     const selectedUnitMenu = unitsList.filter((u) => u.id === unitId)[0]
-    setSelectedUnits([...selectedUnits, selectedUnitMenu])
+    setUnitsSelected([...unitsSelected, selectedUnitMenu])
     console.log(selectedUnitMenu)
   }
-  const onClickUnitInputClearIndicator = (unitId: string) => {
-    setSelectedUnits(selectedUnits.filter((u) => u.id !== unitId))
+  const onClickUnitClearIndicator = (unitId: string) => {
+    setUnitsSelected(unitsSelected.filter((u) => u.id !== unitId))
     const selectedUnitInput = units.filter((u) => u.id === unitId)[0]
     setUnitsList([...unitsList, selectedUnitInput])
+  }
+  const onClickInputClearIndicator = () => {
+    setUnitsSelected([])
   }
 
   return (
     <div>
       <div className="unit-select-container">
         <div className="input-container">
-          {selectedUnits.length > 0 ? (
-            selectedUnits.map((unit: IUnit, key: number) => (
+          {/* {selectedUnits.length > 0 ? ( */}
+          {unitsSelected.length > 0 ? (
+            unitsSelected.map((unit: IUnit, key: number) => (
               <OptionInput
                 key={key}
                 unit={unit}
                 onClickUnitInputClearIndicator={(id) =>
-                  onClickUnitInputClearIndicator(id)
+                  onClickUnitClearIndicator(id)
                 }
               />
             ))
@@ -44,7 +50,7 @@ function UnitsFilterCustom() {
           )}
         </div>
         <div className="indicators-container">
-          <div className="clear-indicator">
+          <div className="clear-indicator" onClick={onClickInputClearIndicator}>
             <svg>
               <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
             </svg>
