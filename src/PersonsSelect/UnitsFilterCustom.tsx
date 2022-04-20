@@ -1,40 +1,52 @@
-import React, { Component, useState } from 'react'
-import { units } from './docs/units'
-import Select from 'react-select'
-import OptionMenu from './OptionMenu'
-import OptionInput from './OptionInput'
-import { IUnit, IUnitsFilterCustom } from './interfaces/interfaces'
+import React, { Component, useState } from "react";
+import { units } from "./docs/units";
+// import Select from "react-select";
+import OptionMenu from "./OptionMenu";
+import OptionInput from "./OptionInput";
+import { IUnit, IUnitsFilterCustom } from "./interfaces/interfaces";
 
 function UnitsFilterCustom({
   unitsSelected,
   setUnitsSelected,
 }: IUnitsFilterCustom) {
-  const [popUpClicked, setPopUpClicked] = useState(false)
-  const [unitsList, setUnitsList] = useState<IUnit[]>(units)
+  const [popUpClicked, setPopUpClicked] = useState(false);
+  const [unitsList, setUnitsList] = useState<IUnit[]>(units);
 
   const onClickPopUp = () => {
-    setPopUpClicked(!popUpClicked)
-  }
+    setPopUpClicked(!popUpClicked);
+  };
   const onClickUnitMenu = (unitId: string) => {
-    setUnitsList(unitsList.filter((u) => u.id !== unitId))
-    const selectedUnitMenu = unitsList.filter((u) => u.id === unitId)[0]
-    setUnitsSelected([...unitsSelected, selectedUnitMenu])
-    console.log(selectedUnitMenu)
-  }
-  const onClickUnitClearIndicator = (unitId: string) => {
-    setUnitsSelected(unitsSelected.filter((u) => u.id !== unitId))
-    const selectedUnitInput = units.filter((u) => u.id === unitId)[0]
-    setUnitsList([...unitsList, selectedUnitInput])
-  }
+    setUnitsList(
+      unitsList.filter((u) => {
+        return u.id !== unitId;
+      })
+    );
+    console.log("unitsList", unitsList);
+    const selectedUnitMenu = unitsList.filter((u) => {
+      return u.id === unitId;
+    })[0];
+    setUnitsSelected([...unitsSelected, selectedUnitMenu]);
+    console.log("unitsSelected", unitsSelected);
+  };
+  const onClickUnitClearIndicator = (unitIdToRemove: string) => {
+    setUnitsSelected(
+      unitsSelected.filter((u) => {
+        return u.id !== unitIdToRemove;
+      })
+    );
+    const selectedUnitInput = units.filter((u) => {
+      return u.id === unitIdToRemove;
+    })[0];
+    setUnitsList([...unitsList, selectedUnitInput]);
+  };
   const onClickInputClearIndicator = () => {
-    setUnitsSelected([])
-  }
+    setUnitsSelected([]);
+  };
 
   return (
     <div>
       <div className="unit-select-container">
-        <div className="input-container">
-          {/* {selectedUnits.length > 0 ? ( */}
+        <div className="input-container" onClick={onClickPopUp}>
           {unitsSelected.length > 0 ? (
             unitsSelected.map((unit: IUnit, key: number) => (
               <OptionInput
@@ -77,7 +89,7 @@ function UnitsFilterCustom({
         </div>
       )}
     </div>
-  )
+  );
 }
 
-export default UnitsFilterCustom
+export default UnitsFilterCustom;

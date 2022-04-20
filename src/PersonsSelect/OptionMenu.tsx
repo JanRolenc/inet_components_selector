@@ -1,30 +1,24 @@
-import React from 'react'
-import { IUnit } from './interfaces/interfaces'
+import React from "react";
+import { IUnit } from "./interfaces/interfaces";
 
 interface Props {
-  unit: IUnit
-  onClickUnitMenu(unitToSelect: string): void
+  unit: IUnit;
+  onClickUnitMenu(unitToSelect: string): void;
 }
 
 const OptionMenu = ({ unit, onClickUnitMenu }: Props) => {
   return (
     <span
       className="unit-container-menu"
-      onClick={() => onClickUnitMenu(unit.id)} //! kdyz dam takto jako param primo id, tak pak ve funkci nemusim pouzit event a target
+      onClick={() => onClickUnitMenu(unit.id)} //!kdyz dam takto jako param primo id, tak pak ve funkci nemusim pouzit event a target
       title={unit.nameCs}
     >
-      &#160;&#160;
       <span
-        style={{
-          height: '10px',
-          width: '10px',
-          borderRadius: '50%',
-          display: 'inline-block',
-          backgroundColor: unit.color,
-        }}
+        className="unit-circle"
+        style={{ backgroundColor: unit.color }}
       ></span>
-      &#160;{unit.shortCs}
+      <span style={{ marginRight: "3px" }}>{unit.shortCs}</span>
     </span>
-  )
-}
-export default OptionMenu
+  );
+};
+export default OptionMenu;

@@ -1,5 +1,7 @@
 .persons-select-container {
-  width: 400px;
+  width: auto;
+  min-width: 300px;
+  display: inline-block;
   a {
     color: black;
     &:hover {
@@ -47,9 +49,10 @@
   align-items: center;
   button {
     display: inline-block;
-    width: 150px;
+    width: auto;
     height: 60%;
     margin-left: 3px;
+    white-space: nowrap;
     &:hover {
       cursor: pointer;
     }
