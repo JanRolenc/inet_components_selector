@@ -1,6 +1,5 @@
 import React, { Component, useState } from "react";
 import { units } from "./docs/units";
-// import Select from "react-select";
 import OptionMenu from "./OptionMenu";
 import OptionInput from "./OptionInput";
 import { IUnit, IUnitsFilterCustom } from "./interfaces/interfaces";
@@ -15,30 +14,32 @@ function UnitsFilterCustom({
   const onClickPopUp = () => {
     setPopUpClicked(!popUpClicked);
   };
-  const onClickUnitMenu = (unitId: string) => {
-    setUnitsList(
-      unitsList.filter((u) => {
-        return u.id !== unitId;
-      })
-    );
-    console.log("unitsList", unitsList);
-    const selectedUnitMenu = unitsList.filter((u) => {
-      return u.id === unitId;
-    })[0];
+
+  const onClickUnitMenu = (unitIdToSelect: string) => {
+    // console.log("unitsList puvodni", unitsList);
+    // const newUnitsList = unitsList.filter((u) => u.id !== unitIdToSelect);
+    // console.log("newList", newUnitsList);
+    // setUnitsList(newUnitsList);
+    console.log("unitsList novy", unitsList);
+    const selectedUnitMenu = unitsList.filter(
+      (u) => u.id === unitIdToSelect
+    )[0];
     setUnitsSelected([...unitsSelected, selectedUnitMenu]);
     console.log("unitsSelected", unitsSelected);
   };
+
   const onClickUnitClearIndicator = (unitIdToRemove: string) => {
-    setUnitsSelected(
-      unitsSelected.filter((u) => {
-        return u.id !== unitIdToRemove;
-      })
-    );
-    const selectedUnitInput = units.filter((u) => {
-      return u.id === unitIdToRemove;
-    })[0];
-    setUnitsList([...unitsList, selectedUnitInput]);
+    console.log("unitsSelected puvodni", unitsSelected);
+    setUnitsSelected(unitsSelected.filter((u) => u.id !== unitIdToRemove));
+    console.log("unitsSelected po odstraneni vybrane", unitsSelected);
+
+    // console.log("unitsList puvodni", unitsList);
+    // const selectedUnitInput = units.filter((u) => u.id === unitIdToRemove)[0];
+    // console.log("selectedInputUnit", selectedUnitInput);
+    // setUnitsList([...unitsList, selectedUnitInput]);
+    // console.log("unitsList po pridani smazane z inputu", unitsList);
   };
+
   const onClickInputClearIndicator = () => {
     setUnitsSelected([]);
   };
@@ -78,13 +79,15 @@ function UnitsFilterCustom({
       {popUpClicked && (
         <div className="popup-container">
           {unitsList.length
-            ? unitsList.map((unit: IUnit, key: number) => (
-                <OptionMenu
-                  key={key}
-                  unit={unit}
-                  onClickUnitMenu={(id) => onClickUnitMenu(id)}
-                />
-              ))
+            ? unitsList
+                .filter((u) => unitsSelected.every((s) => u.id !== s.id))
+                .map((unit: IUnit, key: number) => (
+                  <OptionMenu
+                    key={key}
+                    unit={unit}
+                    onClickUnitMenu={(id) => onClickUnitMenu(id)}
+                  />
+                ))
             : null}
         </div>
       )}

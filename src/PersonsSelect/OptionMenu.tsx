@@ -3,7 +3,7 @@ import { IUnit } from "./interfaces/interfaces";
 
 interface Props {
   unit: IUnit;
-  onClickUnitMenu(unitToSelect: string): void;
+  onClickUnitMenu(unitIdToSelect: string): void;
 }
 
 const OptionMenu = ({ unit, onClickUnitMenu }: Props) => {

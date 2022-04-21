@@ -26,6 +26,7 @@ export interface IPersonsSelect {
   readonly required: boolean;
   readonly disabled: boolean;
   readonly name: string;
+  readonly selectAll: boolean;
   readonly selectedId?: number;
   readonly myId?: number;
 }
@@ -41,6 +42,8 @@ export interface IUnitsFilterCustom {
 }
 
 export interface Relationship {
+  // readonly zamestnanec?: string[] | undefined;
+  // readonly student?: string[] | undefined;
   readonly zamestnanec: string[];
   readonly student: string[];
 }

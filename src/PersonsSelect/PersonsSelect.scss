@@ -24,14 +24,7 @@
       justify-content: center;
     }
   }
-  .checkboxes-container {
-    width: 100%;
-    // border: 1px solid;
-    margin: 10px 0px;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-  }
+
   input {
     box-shadow: none;
     border: none;
@@ -42,11 +35,20 @@
     }
   }
 }
+
 .menu-buttons-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  .checkboxes-container {
+    width: 100%;
+    // border: 1px solid;
+    margin: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+  }
   button {
     display: inline-block;
     width: auto;
@@ -57,4 +59,12 @@
       cursor: pointer;
     }
   }
+}
+.checkbox_nezar-container {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  padding-right: 2px;
+  // background-color: grey;
 }

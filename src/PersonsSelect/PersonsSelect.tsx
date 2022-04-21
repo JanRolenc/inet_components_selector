@@ -23,6 +23,7 @@ export default function PersonsSelect({
   required,
   disabled,
   name,
+  selectAll,
   selectedId,
   myId,
 }: IPersonsSelect) {
@@ -237,6 +238,7 @@ export default function PersonsSelect({
   const [searchValue, setSearchValue] = useState<string>("");
   const [isCheckedZam, setIsCheckedZam] = useState(true);
   const [isCheckedStud, setIsCheckedStud] = useState(true);
+  const [isCheckedNezar, setIsCheckedNezar] = useState(selectAll);
 
   const [unitsSelected, setUnitsSelected] = useState<IUnit[]>([]);
 
@@ -307,6 +309,7 @@ export default function PersonsSelect({
     srchValPer: string,
     zam: boolean,
     stud: boolean,
+    nezar: boolean,
     unitsSel: IUnit[]
   ): IPerson[] => {
     return persons.filter(
@@ -314,13 +317,10 @@ export default function PersonsSelect({
         i.name.toLowerCase().includes(srchValPer.toLowerCase()) &&
         (unitsSel.length === 0 ||
           unitsSel.some((u) => i.unit.includes(u.shortCs))) &&
-        ((!zam && !stud) ||
-          (zam && i.status.zamestnanec.length >= 0) || //!!!!tady hlasi error kdyz v interface dam otaznik student?: string[];
-          (stud && i.status.student.length >= 0)) //tak pridavam >= misto >, aby se zobrazil i "Ani student ani zam"
-      // &&
-      // ((!zam && !stud) ||
-      //   (zam && i.status.zamestnanec.length == 0) ||
-      //   (stud && i.status.student.length == 0))
+        ((!zam && !stud && !nezar) ||
+          (zam && i.status.zamestnanec.length > 0) ||
+          (stud && i.status.student.length > 0) ||
+          (nezar && i.unit.length === 0))
     );
   };
 
@@ -328,6 +328,7 @@ export default function PersonsSelect({
     srchValPer: string,
     zam: boolean,
     stud: boolean,
+    nezar: boolean,
     unitsSel: IUnit[]
   ) => {
     if (!srchValPer && srchValPer.length < 1) {
@@ -340,7 +341,7 @@ export default function PersonsSelect({
       setOptionsMode(OptionsMode.SEARCH);
       new Promise<IPerson[]>((resolve) => {
         setTimeout(
-          () => resolve(filterPersons(srchValPer, zam, stud, unitsSel)),
+          () => resolve(filterPersons(srchValPer, zam, stud, nezar, unitsSel)),
           500
         );
       })
@@ -357,12 +358,35 @@ export default function PersonsSelect({
   const onCheckboxStudChange = () => {
     const newIsChecked = !isCheckedStud;
     setIsCheckedStud(newIsChecked);
-    searchPersonsAsync(searchValue, isCheckedZam, newIsChecked, unitsSelected);
+    searchPersonsAsync(
+      searchValue,
+      isCheckedZam,
+      newIsChecked,
+      isCheckedNezar,
+      unitsSelected
+    );
   };
   const onCheckboxZamChange = () => {
     const newIsChecked = !isCheckedZam;
     setIsCheckedZam(newIsChecked);
-    searchPersonsAsync(searchValue, newIsChecked, isCheckedStud, unitsSelected);
+    searchPersonsAsync(
+      searchValue,
+      newIsChecked,
+      isCheckedStud,
+      isCheckedNezar,
+      unitsSelected
+    );
+  };
+  const onCheckboxNezarChange = () => {
+    const newIsChecked = !isCheckedZam;
+    setIsCheckedNezar(newIsChecked);
+    searchPersonsAsync(
+      searchValue,
+      newIsChecked,
+      isCheckedStud,
+      isCheckedZam,
+      unitsSelected
+    );
   };
 
   const personsInputStarClick = () => {
@@ -371,9 +395,9 @@ export default function PersonsSelect({
         if (p.id === selectedPerson.id) {
           const newP = { ...p, favourite: !p.favourite };
           setSelectedPerson(newP);
-          return newP;
+          return newP; //!!musi byt return
         }
-        return p;
+        return p; //!!musi byt return
       });
       setPersons(newPersons);
     }
@@ -420,9 +444,7 @@ export default function PersonsSelect({
               checked={isCheckedZam}
               onChange={onCheckboxZamChange}
             ></input>
-            <label htmlFor="zam">
-              Zaměstnanec<span></span>
-            </label>
+            <label htmlFor="zam">Zaměstnanec</label>
             <input
               type="checkbox"
               id="stud"
@@ -433,6 +455,19 @@ export default function PersonsSelect({
             <label htmlFor="stud">Student</label>
           </div>
         </div>
+        {selectAll ? (
+          <div className="checkbox_nezar-container">
+            <input
+              type="checkbox"
+              id="nazar"
+              name="nezar"
+              checked={isCheckedStud}
+              onChange={onCheckboxNezarChange}
+            ></input>
+            <label htmlFor="stud">Nezařazení</label>
+          </div>
+        ) : null}
+
         <UnitsFilterCustom
           unitsSelected={unitsSelected}
           setUnitsSelected={(unitsSel: IUnit[]) => {
@@ -441,6 +476,7 @@ export default function PersonsSelect({
               searchValue,
               isCheckedZam,
               isCheckedStud,
+              isCheckedNezar,
               unitsSel
             );
           }}
@@ -508,6 +544,7 @@ export default function PersonsSelect({
               newValue,
               isCheckedZam,
               isCheckedStud,
+              isCheckedNezar,
               unitsSelected
             );
           }
@@ -518,6 +555,7 @@ export default function PersonsSelect({
             searchValue,
             isCheckedZam,
             isCheckedStud,
+            isCheckedNezar,
             unitsSelected
           );
           //          setMenuIsOpen(true);
