@@ -49,4 +49,6 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
-//! kdyz dam takto jako param primo id, tak pak ve funkci nemusim pouzit event a target
+//!!musi byt return
+
+//!kdyz dam takto jako param primo id, tak pak ve funkci nemusim pouzit event a target
