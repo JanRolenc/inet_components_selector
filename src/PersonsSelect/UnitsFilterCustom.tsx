@@ -49,9 +49,9 @@ function UnitsFilterCustom({
       <div className="unit-select-container">
         <div className="input-container" onClick={onClickPopUp}>
           {unitsSelected.length > 0 ? (
-            unitsSelected.map((unit: IUnit, key: number) => (
+            unitsSelected.map((unit: IUnit) => (
               <OptionInput
-                key={key}
+                key={unit.id}
                 unit={unit}
                 onClickUnitInputClearIndicator={(id) =>
                   onClickUnitClearIndicator(id)
@@ -81,9 +81,9 @@ function UnitsFilterCustom({
           {unitsList.length
             ? unitsList
                 .filter((u) => unitsSelected.every((s) => u.id !== s.id))
-                .map((unit: IUnit, key: number) => (
+                .map((unit: IUnit) => (
                   <OptionMenu
-                    key={key}
+                    key={unit.id}
                     unit={unit}
                     onClickUnitMenu={(id) => onClickUnitMenu(id)}
                   />
