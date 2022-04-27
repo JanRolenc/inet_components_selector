@@ -3,6 +3,7 @@ import { units } from "./docs/units";
 import OptionMenu from "./OptionMenu";
 import OptionInput from "./OptionInput";
 import { IUnit, IUnitsFilterCustom } from "./interfaces/interfaces";
+// import "./UnitsFilterCustom.scss";
 
 function UnitsFilterCustom({
   unitsSelected,
@@ -16,28 +17,14 @@ function UnitsFilterCustom({
   };
 
   const onClickUnitMenu = (unitIdToSelect: string) => {
-    // console.log("unitsList puvodni", unitsList);
-    // const newUnitsList = unitsList.filter((u) => u.id !== unitIdToSelect);
-    // console.log("newList", newUnitsList);
-    // setUnitsList(newUnitsList);
-    console.log("unitsList novy", unitsList);
     const selectedUnitMenu = unitsList.filter(
       (u) => u.id === unitIdToSelect
     )[0];
     setUnitsSelected([...unitsSelected, selectedUnitMenu]);
-    console.log("unitsSelected", unitsSelected);
   };
 
   const onClickUnitClearIndicator = (unitIdToRemove: string) => {
-    console.log("unitsSelected puvodni", unitsSelected);
     setUnitsSelected(unitsSelected.filter((u) => u.id !== unitIdToRemove));
-    console.log("unitsSelected po odstraneni vybrane", unitsSelected);
-
-    // console.log("unitsList puvodni", unitsList);
-    // const selectedUnitInput = units.filter((u) => u.id === unitIdToRemove)[0];
-    // console.log("selectedInputUnit", selectedUnitInput);
-    // setUnitsList([...unitsList, selectedUnitInput]);
-    // console.log("unitsList po pridani smazane z inputu", unitsList);
   };
 
   const onClickInputClearIndicator = () => {
@@ -46,8 +33,8 @@ function UnitsFilterCustom({
 
   return (
     <div>
-      <div className="unit-select-container">
-        <div className="input-container" onClick={onClickPopUp}>
+      <div className="units-filter-container">
+        <div className="units-filter-input" onClick={onClickPopUp}>
           {unitsSelected.length > 0 ? (
             unitsSelected.map((unit: IUnit) => (
               <OptionInput
@@ -78,17 +65,16 @@ function UnitsFilterCustom({
       </div>
       {popUpClicked && (
         <div className="popup-container">
-          {unitsList.length
-            ? unitsList
-                .filter((u) => unitsSelected.every((s) => u.id !== s.id))
-                .map((unit: IUnit) => (
-                  <OptionMenu
-                    key={unit.id}
-                    unit={unit}
-                    onClickUnitMenu={(id) => onClickUnitMenu(id)}
-                  />
-                ))
-            : null}
+          {unitsList.length &&
+            unitsList
+              .filter((u) => unitsSelected.every((s) => u.id !== s.id))
+              .map((unit: IUnit) => (
+                <OptionMenu
+                  key={unit.id}
+                  unit={unit}
+                  onClickUnitMenu={(id) => onClickUnitMenu(id)}
+                />
+              ))}
         </div>
       )}
     </div>

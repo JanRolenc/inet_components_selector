@@ -12,7 +12,6 @@ import {
 } from "./interfaces/interfaces";
 import "./PersonsSelect.scss";
 import PersonContainer from "./PersonContainer";
-// import UnitsFilter from "./UnitsFilter";
 import UnitsFilterCustom from "./UnitsFilterCustom";
 import "./UnitsFilterCustom.scss";
 
@@ -378,13 +377,13 @@ export default function PersonsSelect({
     );
   };
   const onCheckboxNezarChange = () => {
-    const newIsChecked = !isCheckedZam;
+    const newIsChecked = !isCheckedNezar;
     setIsCheckedNezar(newIsChecked);
     searchPersonsAsync(
       searchValue,
-      newIsChecked,
-      isCheckedStud,
       isCheckedZam,
+      isCheckedStud,
+      newIsChecked,
       unitsSelected
     );
   };
@@ -426,7 +425,7 @@ export default function PersonsSelect({
     );
   };
   const meSelection = () => {
-    setSelectedPerson(persons.filter((p) => p.myId === myId)[0]);
+    setSelectedPerson(persons.filter((p) => p.id === myId)[0]);
     setOptionsMode(OptionsMode.ME);
     selectRef.current?.blur();
   };
@@ -461,7 +460,7 @@ export default function PersonsSelect({
               type="checkbox"
               id="nazar"
               name="nezar"
-              checked={isCheckedStud}
+              checked={isCheckedNezar}
               onChange={onCheckboxNezarChange}
             ></input>
             <label htmlFor="stud">Nezařazení</label>

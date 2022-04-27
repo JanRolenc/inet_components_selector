@@ -10,7 +10,7 @@ ReactDOM.render(
     disabled={false}
     selectAll={true} //výhledově dle přiřezených práv uživatele bude mít uživatel u tohoto true/false a tedy možnost pracovat i s nezařazenými
     selectedId={3}
-    myId={1200}
+    myId={2}
   />,
   document.getElementById("root")
 );

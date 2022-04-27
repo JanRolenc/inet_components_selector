@@ -8,14 +8,14 @@ interface Props {
 
 const OptionInput = ({ unit, onClickUnitInputClearIndicator }: Props) => {
   return (
-    <div className="unit-container-input" title={unit.nameCs}>
+    <div className="unit-container unit-container--input" title={unit.nameCs}>
       <span
-        className="unit-circle"
+        className="unit-container__circle"
         style={{ backgroundColor: unit.color }}
       ></span>
       <span style={{ marginRight: "3px" }}>{unit.shortCs}</span>
       <div
-        className="clear-indicator-unit-container"
+        className="unit-container-input__clear"
         onClick={() => onClickUnitInputClearIndicator(unit.id)}
       >
         <svg>

@@ -1,4 +1,6 @@
-.unit-select-container {
+//BEM convention applied: .block, __element, --modifier
+
+.units-filter-container {
   margin-top: 5px;
   margin-bottom: 5px;
   width: 100%;
@@ -10,7 +12,7 @@
   border-style: solid;
   border-width: 1px;
   box-sizing: border-box;
-  .input-container {
+  .units-filter-input {
     -webkit-box-align: center;
     align-items: center;
     display: flex;
@@ -20,45 +22,6 @@
     position: relative;
     overflow: hidden;
     box-sizing: border-box;
-    .unit-container-input {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      // padding: 0px 0px 0px 5px;
-      margin: 2px 0px 2px 8px;
-      background-color: rgb(230, 230, 230);
-      border-radius: 2px;
-      box-sizing: border-box;
-      .clear-indicator-unit-container {
-        border-radius: 2px;
-        cursor: default;
-        box-sizing: border-box;
-        opacity: 0.2;
-        &:hover {
-          background-color: rgb(234, 157, 102);
-          font-weight: bold;
-          opacity: 0.9;
-        }
-        svg {
-          // vertical-align: center;
-          //nedari se mi nastavit mensi rozmery
-          //padding-top: 3px;
-          // padding: 1px;
-          // margin: 1px;
-          // padding-right: 3px;
-          // margin-bottom: 3px;
-          // margin-right: 20px;
-          // color: yellow;//u svg nutne pouzit fill
-          // fill: red;
-          height: 18px;
-          width: 18px;
-          transform: scale(0.8);
-          &:hover {
-            fill: red;
-          }
-        }
-      }
-    }
   }
 }
 
@@ -111,7 +74,38 @@
   text-align: left;
   border-color: #4e5458;
   color: #181a1b;
-  .unit-container-menu {
+}
+.unit-container {
+  // border-radius: 2px;
+  .unit-container--input {
+    display: flex;
+    border-radius: 2px;
+    flex-direction: row;
+    align-items: center;
+    margin: 2px 0px 2px 8px;
+    background-color: rgb(230, 230, 230);
+    box-sizing: border-box;
+    .unit-container-input__clear {
+      border-radius: 2px;
+      cursor: default;
+      box-sizing: border-box;
+      opacity: 0.2;
+      &:hover {
+        background-color: rgb(234, 157, 102);
+        font-weight: bold;
+        opacity: 0.9;
+      }
+      svg {
+        height: 18px;
+        width: 18px;
+        transform: scale(0.8);
+        &:hover {
+          fill: red;
+        }
+      }
+    }
+  }
+  .unit-container--menu {
     display: inline-block;
     border-radius: 2px;
     margin: 10px 0px 5px 8px;
@@ -123,13 +117,14 @@
       color: white;
     }
   }
-}
-.unit-circle {
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  display: inline-block;
-  padding: 0px;
-  margin-left: 4px;
-  margin-right: 4px;
+
+  .unit-container__circle {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    padding: 0px;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
 }
