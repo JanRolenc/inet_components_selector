@@ -1,53 +1,39 @@
-import React, { Component, useState } from "react";
-import { units } from "./docs/units";
-import OptionMenu from "./OptionMenu";
-import OptionInput from "./OptionInput";
-import { IUnit, IUnitsFilterCustom } from "./interfaces/interfaces";
+import React, { Component, useState, Fragment } from 'react'
+import { units } from './docs/units'
+import OptionMenu from './OptionMenu'
+import OptionInput from './OptionInput'
+import { IUnit, IUnitsFilterCustom } from './interfaces/interfaces'
 
 function UnitsFilterCustom({
   unitsSelected,
   setUnitsSelected,
 }: IUnitsFilterCustom) {
-  const [popUpClicked, setPopUpClicked] = useState(false);
-  const [unitsList, setUnitsList] = useState<IUnit[]>(units);
+  const [popUpClicked, setPopUpClicked] = useState(false)
+  const [unitsList, setUnitsList] = useState<IUnit[]>(units)
 
   const onClickPopUp = () => {
-    setPopUpClicked(!popUpClicked);
-  };
+    setPopUpClicked(!popUpClicked)
+  }
 
   const onClickUnitMenu = (unitIdToSelect: string) => {
-    // console.log("unitsList puvodni", unitsList);
-    // const newUnitsList = unitsList.filter((u) => u.id !== unitIdToSelect);
-    // console.log("newList", newUnitsList);
-    // setUnitsList(newUnitsList);
-    console.log("unitsList novy", unitsList);
-    const selectedUnitMenu = unitsList.filter(
-      (u) => u.id === unitIdToSelect
-    )[0];
-    setUnitsSelected([...unitsSelected, selectedUnitMenu]);
-    console.log("unitsSelected", unitsSelected);
-  };
+    const selectedUnitMenu = unitsList.filter((u) => u.id === unitIdToSelect)[0]
+    setUnitsSelected([...unitsSelected, selectedUnitMenu])
+    //zmeny v seznamu fakult v menu (unitsList) provadime nize v return
+  }
 
   const onClickUnitClearIndicator = (unitIdToRemove: string) => {
-    console.log("unitsSelected puvodni", unitsSelected);
-    setUnitsSelected(unitsSelected.filter((u) => u.id !== unitIdToRemove));
-    console.log("unitsSelected po odstraneni vybrane", unitsSelected);
-
-    // console.log("unitsList puvodni", unitsList);
-    // const selectedUnitInput = units.filter((u) => u.id === unitIdToRemove)[0];
-    // console.log("selectedInputUnit", selectedUnitInput);
-    // setUnitsList([...unitsList, selectedUnitInput]);
-    // console.log("unitsList po pridani smazane z inputu", unitsList);
-  };
+    setUnitsSelected(unitsSelected.filter((u) => u.id !== unitIdToRemove))
+    //zmeny v seznamu fakult v menu (unitsList) provadime nize v return
+  }
 
   const onClickInputClearIndicator = () => {
-    setUnitsSelected([]);
-  };
+    setUnitsSelected([])
+  }
 
   return (
-    <div>
-      <div className="unit-select-container">
-        <div className="input-container" onClick={onClickPopUp}>
+    <Fragment>
+      <div className="units-select">
+        <div className="unit-container" onClick={onClickPopUp}>
           {unitsSelected.length > 0 ? (
             unitsSelected.map((unit: IUnit, key: number) => (
               <OptionInput
@@ -59,10 +45,13 @@ function UnitsFilterCustom({
               />
             ))
           ) : (
-            <span>Vyber fakultu...</span>
+            <div className="unit-container__input--nounit">
+              <span>Vyber fakultu...</span>
+            </div>
           )}
+          {/* </div> */}
         </div>
-        <div className="indicators-container">
+        <div className="units-select__indicators">
           <div className="clear-indicator" onClick={onClickInputClearIndicator}>
             <svg>
               <path d="M14.348 14.849c-0.469 0.469-1.229 0.469-1.697 0l-2.651-3.030-2.651 3.029c-0.469 0.469-1.229 0.469-1.697 0-0.469-0.469-0.469-1.229 0-1.697l2.758-3.15-2.759-3.152c-0.469-0.469-0.469-1.228 0-1.697s1.228-0.469 1.697 0l2.652 3.031 2.651-3.031c0.469-0.469 1.228-0.469 1.697 0s0.469 1.229 0 1.697l-2.758 3.152 2.758 3.15c0.469 0.469 0.469 1.229 0 1.698z"></path>
@@ -77,22 +66,24 @@ function UnitsFilterCustom({
         </div>
       </div>
       {popUpClicked && (
-        <div className="popup-container">
-          {unitsList.length
-            ? unitsList
-                .filter((u) => unitsSelected.every((s) => u.id !== s.id))
-                .map((unit: IUnit, key: number) => (
-                  <OptionMenu
-                    key={key}
-                    unit={unit}
-                    onClickUnitMenu={(id) => onClickUnitMenu(id)}
-                  />
-                ))
-            : null}
+        <div className="units-popup-container">
+          <div className="unit-container">
+            {unitsList.length
+              ? unitsList
+                  .filter((u) => unitsSelected.every((s) => u.id !== s.id)) //!!!srovnani dvou poli
+                  .map((unit: IUnit, key: number) => (
+                    <OptionMenu
+                      key={key}
+                      unit={unit}
+                      onClickUnitMenu={(id) => onClickUnitMenu(id)}
+                    />
+                  ))
+              : null}
+          </div>
         </div>
       )}
-    </div>
-  );
+    </Fragment>
+  )
 }
 
-export default UnitsFilterCustom;
+export default UnitsFilterCustom
