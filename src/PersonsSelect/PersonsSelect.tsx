@@ -409,7 +409,7 @@ export default function PersonsSelect({
           {selectedPerson && (
             <img
               style={{
-                height: '13px',
+                height: '19px',
                 padding: '3px',
                 opacity: '0.5',
               }}

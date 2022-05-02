@@ -65,6 +65,7 @@
 
 .unit-container {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     .unit-container__circle {
         height: 10px;

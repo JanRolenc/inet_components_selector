@@ -16,7 +16,7 @@ const OptionInput = ({ unit, onClickUnitInputClearIndicator }: Props) => {
       {/* <span style={{ marginRight: '3px' }}>{unit.shortCs}</span> */}
       <span>{unit.shortCs}</span>
       <div
-        className="unit-container-input__clear"
+        className="clear-indicator-unit-container"
         onClick={() => onClickUnitInputClearIndicator(unit.id)}
       >
         <svg>
