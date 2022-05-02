@@ -1,4 +1,7 @@
 body {
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 0.8em;
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 0.8em;
+}
+* {
+  box-sizing: border-box;
 }

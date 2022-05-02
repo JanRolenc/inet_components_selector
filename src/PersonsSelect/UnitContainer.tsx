@@ -4,13 +4,10 @@ import "./UnitContainer.scss";
 
 const UnitContainer = (unit: IUnit, meta: FormatOptionLabelMeta) => {
   return meta.context === "menu" ? (
-    <div className="unit-container-menu">
+    <div className="unit-container unit-container--menu">
       <span
+        className="unit-container__circle"
         style={{
-          height: "10px",
-          width: "10px",
-          borderRadius: "50%",
-          display: "inline-block",
           backgroundColor: unit.color,
         }}
       ></span>
@@ -20,13 +17,10 @@ const UnitContainer = (unit: IUnit, meta: FormatOptionLabelMeta) => {
       <span>{unit.nameCs}</span>
     </div>
   ) : (
-    <div className="unit-container-input">
+    <div className="unit-container unit-container--input">
       <span
+        className="unit-container__circle"
         style={{
-          height: "10px",
-          width: "10px",
-          borderRadius: "50%",
-          display: "inline-block",
           backgroundColor: unit.color,
         }}
       ></span>
