@@ -1,9 +1,5 @@
-import React, { useState, useRef } from 'react'
-import Select, {
-  InputActionMeta,
-  components,
-  IndicatorSeparatorProps,
-} from 'react-select'
+import { useState, useRef } from 'react'
+import Select, { InputActionMeta, components } from 'react-select'
 import {
   IPerson,
   IPersonsSelect,
@@ -18,6 +14,8 @@ import './UnitsFilterCustom.scss'
 import yellowStar from './pictures/yellow_star.png'
 import blackStar from './pictures/black_star.png'
 
+import { personsList } from './docs/personsList'
+
 export default function PersonsSelect({
   required,
   disabled,
@@ -26,207 +24,7 @@ export default function PersonsSelect({
   selectedId,
   myId,
 }: IPersonsSelect) {
-  const [persons, setPersons] = useState<IPerson[]>([
-    {
-      id: 12,
-      name: 'Nezařazený',
-      phone: 0,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: false,
-      myId: 1200,
-    },
-    {
-      id: 13,
-      name: 'Nezařazený',
-      phone: 111111111,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: true,
-      myId: 1300,
-    },
-    {
-      id: 1,
-      name: 'Jules Verne',
-      phone: 111111111,
-      status: { zamestnanec: ['ÚVT'], student: ['FI', 'FF'] },
-      unit: ['ÚVT', 'FI', 'FF'],
-      favourite: true,
-      myId: 100,
-    },
-    {
-      id: 2,
-      name: 'Ota Pavel',
-      phone: 222222222,
-      status: { zamestnanec: ['PřF'], student: [] },
-      unit: ['PřF'],
-      favourite: true,
-      myId: 200,
-    },
-    {
-      id: 3,
-      name: 'Bohumil Hrabal',
-      phone: 333333333,
-      status: { zamestnanec: [], student: ['ESF'] },
-      unit: ['ESF'],
-      favourite: true,
-      myId: 300,
-    },
-    {
-      id: 4,
-      name: 'Jan Skácel',
-      phone: 444444444,
-      status: { zamestnanec: ['PrF'], student: [] },
-      unit: ['PrF'],
-      favourite: false,
-      myId: 400,
-    },
-    {
-      id: 5,
-      name: 'Karel Čapek',
-      phone: 555555555,
-      status: { zamestnanec: ['FF'], student: ['FF'] },
-      unit: ['FF'],
-      favourite: false,
-      myId: 500,
-    },
-    {
-      id: 6,
-      name: 'Arnošt Lustig',
-      phone: 666666666,
-      status: { zamestnanec: ['FSS'], student: ['FSS'] },
-      unit: ['FSS'],
-      favourite: false,
-      myId: 600,
-    },
-    {
-      id: 7,
-      name: 'Vladislav Vančura',
-      phone: 777777777,
-      status: { zamestnanec: ['FI'], student: [] },
-      unit: ['FI'],
-      favourite: false,
-      myId: 700,
-    },
-    {
-      id: 8,
-      name: 'Karolina Světlá',
-      phone: 888888888,
-      status: { zamestnanec: ['PdF'], student: [] },
-      unit: ['PdF'],
-      favourite: false,
-      myId: 800,
-    },
-    {
-      id: 9,
-      name: 'Alena Mornštajnová',
-      phone: 999999999,
-      status: { zamestnanec: ['FSpS'], student: [] },
-      unit: ['FSpS'],
-      favourite: false,
-      myId: 900,
-    },
-    {
-      id: 10,
-      name: 'Božena Němcová',
-      phone: 111222333,
-      status: { zamestnanec: ['CEITEC'], student: [] },
-      unit: ['CEITEC'],
-      favourite: false,
-      myId: 1000,
-    },
-    {
-      id: 11,
-      name: 'Zdeněk Machač',
-      phone: 22222111,
-      status: { zamestnanec: ['ÚVT'], student: [] },
-      unit: ['FI'],
-      favourite: true,
-      myId: 1100,
-    },
-    {
-      id: 14,
-      name: 'Nezařazený',
-      phone: 222222222,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: true,
-      myId: 1400,
-    },
-    {
-      id: 15,
-      name: 'Nezařazený',
-      phone: 333333333,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: true,
-      myId: 1500,
-    },
-    {
-      id: 16,
-      name: 'Nezařazený',
-      phone: 444444444,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: false,
-      myId: 1600,
-    },
-    {
-      id: 17,
-      name: 'Nezařazený',
-      phone: 555555555,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: false,
-      myId: 1700,
-    },
-    {
-      id: 18,
-      name: 'Nezařazený',
-      phone: 666666666,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: false,
-      myId: 1800,
-    },
-    {
-      id: 19,
-      name: 'Nezařazený',
-      phone: 777777777,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: false,
-      myId: 1900,
-    },
-    {
-      id: 20,
-      name: 'Nezařazený',
-      phone: 888888888,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: false,
-      myId: 2000,
-    },
-    {
-      id: 21,
-      name: 'Nezařazený',
-      phone: 999999999,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: false,
-      myId: 2100,
-    },
-    {
-      id: 22,
-      name: 'Nezařazený',
-      phone: 111222333,
-      status: { zamestnanec: [], student: [] },
-      unit: [],
-      favourite: false,
-      myId: 2200,
-    },
-  ])
-
+  const [persons, setPersons] = useState<IPerson[]>(personsList)
   const [optionsPersons, setOptionsPersons] = useState<IPerson[]>([])
   const [selectedPerson, setSelectedPerson] = useState<IPerson | null>(
     persons.filter((p) => p.id === selectedId)[0],
@@ -243,10 +41,6 @@ export default function PersonsSelect({
 
   const [menuIsOpen, setMenuIsOpen] = useState<boolean | undefined>(undefined)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-
-  // const handleChange = (person: IPerson | null) => {
-  //   setSelectedValuePerson(person);
-  // };
 
   // const getPersons = () => {
   //   fetch('data.json', {
@@ -270,9 +64,6 @@ export default function PersonsSelect({
     control: (styles: any) => ({
       ...styles,
       minHeight: 'auto',
-      //zajisti uzsi cely input
-      // zIndex: "auto",//???
-      // width: "350px",//sirka je upravena v nadrazenem persons-select-container
     }),
     indicatorsContainer: (styles: any) => ({
       ...styles,
@@ -285,24 +76,15 @@ export default function PersonsSelect({
       color: isFocused ? 'white' : undefined,
       zIndex: 1,
     }),
-    //mohlo by se asi zrusit
-    // menu: (styles: any) => ({
-    //   ...styles,
-    //   color: "#555",
-    //   zIndex: 100,
-    //   width: "350px",
-    // }),
     dropdownIndicator: (styles: any) => ({
       ...styles,
-      padding: '3px', //zajisti uzsi cely input
+      padding: '3px',
     }),
     clearIndicator: (styles: any) => ({
       ...styles,
-      padding: '3px', //zajisti uzsi cely input
+      padding: '3px',
     }),
   }
-
-  const selectRef = useRef<any>(null)
 
   const filterPersons = (
     srchValPer: string,
@@ -331,8 +113,6 @@ export default function PersonsSelect({
     unitsSel: IUnit[],
   ) => {
     if (!srchValPer && srchValPer.length < 1) {
-      //tady pozdeji nastavime <2
-      // setOptionsPersons([]);
       setOptionsMode(OptionsMode.FAVOURITE)
       setOptionsPersons(persons.filter((p) => p.favourite === true))
     } else {
@@ -394,9 +174,9 @@ export default function PersonsSelect({
         if (p.id === selectedPerson.id) {
           const newP = { ...p, favourite: !p.favourite }
           setSelectedPerson(newP)
-          return newP //!!musi byt return
+          return newP
         }
-        return p //!!musi byt return
+        return p
       })
       setPersons(newPersons)
     }
@@ -408,11 +188,7 @@ export default function PersonsSelect({
         <div className=" css-42oyae-indicatorContainer" aria-hidden="true">
           {selectedPerson && (
             <img
-              style={{
-                height: '19px',
-                padding: '3px',
-                opacity: '0.5',
-              }}
+              className="yellowstar yellowstar--personinput"
               src={selectedPerson.favourite ? yellowStar : blackStar}
               alt="star"
               onClick={personsInputStarClick}
@@ -424,6 +200,7 @@ export default function PersonsSelect({
       </components.IndicatorsContainer>
     )
   }
+  const selectRef = useRef<any>(null)
   const meSelection = () => {
     setSelectedPerson(persons.filter((p) => p.id === myId)[0])
     setOptionsMode(OptionsMode.ME)
@@ -518,7 +295,7 @@ export default function PersonsSelect({
       />{' '}
       <Select
         ref={selectRef}
-        value={selectedPerson} //proc je tady [0]? - protoze filter vraci pro kazde (p) pole, i kdyz je v nem jen jeden objekt a my chceme jen objekt
+        value={selectedPerson}
         placeholder="Vyhledej osobu (alespoň 2 písmena) ..."
         components={{ Menu, IndicatorsContainer }}
         options={optionsPersons}

@@ -10,7 +10,7 @@
     border-style: solid;
     border-width: 1px;
     box-sizing: border-box;
-    .units-select__input {
+    &__input {
         -webkit-box-align: center;
         align-items: center;
         display: flex;
@@ -21,7 +21,7 @@
         overflow: hidden;
         box-sizing: border-box;
     }
-    .units-select__indicators {
+    &__indicators {
         -webkit-box-align: center;
         align-items: center;
         align-self: stretch;
@@ -32,7 +32,7 @@
             width: 20px;
             height: 20px;
         }
-        .clear-indicator {
+        &__clear {
             display: flex;
             padding: 3px;
             box-sizing: border-box;
@@ -42,7 +42,7 @@
                 opacity: 0.4;
             }
         }
-        .indicator-separator {
+        &__separator {
             align-self: stretch;
             background-color: rgb(204, 204, 204);
             margin-bottom: 8px;
@@ -50,7 +50,7 @@
             width: 1px;
             box-sizing: border-box;
         }
-        .dropdown-indicator {
+        &__dropdown {
             color: rgb(204, 204, 204);
             display: flex;
             padding: 3px;
@@ -67,7 +67,8 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    .unit-container__circle {
+    width: 100%;
+    &__circle {
         height: 10px;
         width: 10px;
         border-radius: 50%;
@@ -76,7 +77,7 @@
         margin-left: 4px;
         margin-right: 4px;
     }
-    .unit-container__menu {
+    &__menu {
         display: inline-block;
         border-radius: 2px;
         margin: 10px 0px 5px 8px;
@@ -87,16 +88,17 @@
             color: white;
         }
     }
-    .unit-container__input {
+    &__input {
         display: inline-flex;
         align-items: center;
         margin: 2px 0px 2px 8px;
         background-color: rgb(230, 230, 230);
         border-radius: 2px;
-        .clear-indicator-unit-container {
+        &__clear {
             border-radius: 2px;
             cursor: default;
             opacity: 0.2;
+            margin: 0px 0px 0px 3px;
             &:hover {
                 background-color: rgb(234, 157, 102);
                 font-weight: bold;
@@ -112,6 +114,11 @@
             }
         }
     }
+    &__input--nounit {
+        padding: 6px;
+        margin: 0px 0px 0px 3px;
+        background-color: white;
+    }
 }
 
 .units-popup-container {
@@ -122,10 +129,4 @@
     text-align: left;
     border-color: #4e5458;
     color: #181a1b;
-}
-
-.unit-container__input--nounit {
-    //kdyz toto dam pod unit-container__input, tak nefunguje
-    padding: 6px;
-    margin: 0px 0px 0px 3px;
 }
