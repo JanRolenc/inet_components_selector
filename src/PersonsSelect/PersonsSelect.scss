@@ -35,38 +35,36 @@
     }
 }
 
-.menu-buttons-container {
+.menu-buttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    .checkboxes-container {
-        width: 100%;
-        // border: 1px solid;
-        margin: 10px 0px;
-        display: flex;
-        align-items: center;
-        justify-content: right;
-    }
-    button {
+    margin-bottom: 12px;
+    &__button {
         display: inline-block;
         width: auto;
         height: 60%;
-        margin-left: 3px;
+        margin: 15px 0px 0px 5px;
         white-space: nowrap;
         &:hover {
             cursor: pointer;
         }
     }
-}
-
-.checkbox_nezar-container {
-    box-sizing: border-box;
-    width: 100%;
-    display: flex;
-    justify-content: right;
-    padding-right: 2px;
-    // background-color: grey;
+    &__checkboxes {
+        width: 100%;
+        padding-top: 5px;
+        margin: 10px 0px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: right;
+        margin: 10px 2px 3px 3px;
+        &__nezar {
+            margin-top: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: right;
+        }
+    }
 }
 
 .yellowstar {

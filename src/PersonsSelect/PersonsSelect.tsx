@@ -210,9 +210,12 @@ export default function PersonsSelect({
   const Menu = (props: any) => {
     return (
       <components.Menu {...props}>
-        <div className="menu-buttons-container">
-          <button onClick={meSelection}>Vyber mě</button>
-          <div className="checkboxes-container">
+        <div className="menu-buttons">
+          <div className="menu-buttons__button">
+            <button onClick={meSelection}>Vyber mě</button>
+          </div>
+
+          <div className="menu-buttons__checkboxes">
             <input
               type="checkbox"
               id="zam"
@@ -229,20 +232,20 @@ export default function PersonsSelect({
               onChange={onCheckboxStudChange}
             ></input>
             <label htmlFor="stud">Student</label>
+            {selectAll ? (
+              <div className="menu-buttons__checkboxes__nezar">
+                <input
+                  type="checkbox"
+                  id="nazar"
+                  name="nezar"
+                  checked={isCheckedNezar}
+                  onChange={onCheckboxNezarChange}
+                ></input>
+                <label htmlFor="stud">Nezařazení</label>
+              </div>
+            ) : null}
           </div>
         </div>
-        {selectAll ? (
-          <div className="checkbox_nezar-container">
-            <input
-              type="checkbox"
-              id="nazar"
-              name="nezar"
-              checked={isCheckedNezar}
-              onChange={onCheckboxNezarChange}
-            ></input>
-            <label htmlFor="stud">Nezařazení</label>
-          </div>
-        ) : null}
 
         <UnitsFilterCustom
           unitsSelected={unitsSelected}
@@ -282,7 +285,7 @@ export default function PersonsSelect({
       </components.Menu>
     )
   }
-  const getDefaultValue = () => {}
+  const getDefaultValue = () => {} //TADY POKRACUJ
   return (
     <div
       className="persons-select-container"
