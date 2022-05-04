@@ -1,5 +1,4 @@
-import React from 'react'
-import { IUnit } from './interfaces/interfaces'
+import { IUnit } from '../interfaces/interfaces'
 
 interface Props {
   unit: IUnit
@@ -10,7 +9,7 @@ const OptionMenu = ({ unit, onClickUnitMenu }: Props) => {
   return (
     <span
       className="unit-container__menu"
-      onClick={() => onClickUnitMenu(unit.id)} //!kdyz dam takto jako param primo id, tak pak ve funkci nemusim pouzit event a target
+      onClick={() => onClickUnitMenu(unit.id)}
       title={unit.nameCs}
     >
       <span

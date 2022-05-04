@@ -8,8 +8,8 @@ import {
 } from './interfaces/interfaces'
 import './PersonsSelect.scss'
 import PersonContainer from './PersonContainer'
-import UnitsFilterCustom from './UnitsFilterCustom'
-import './UnitsFilterCustom.scss'
+import UnitsFilterCustom from './UnitsFilterCustom/UnitsFilterCustom'
+import './UnitsFilterCustom/UnitsFilterCustom.scss'
 
 import yellowStar from './pictures/yellow_star.png'
 import blackStar from './pictures/black_star.png'
@@ -64,11 +64,13 @@ export default function PersonsSelect({
     control: (styles: any) => ({
       ...styles,
       minHeight: 'auto',
-    }),
-    indicatorsContainer: (styles: any) => ({
-      ...styles,
-      display: 'flex',
-      flexDirection: 'row',
+      backgroundColor: '#fcf4e3',
+      ':hover': {
+        borderColor: '#2468A7',
+      },
+      border: '1px solid #9CB5CC',
+      boxShadow: '0 0 2px #9cb5cc inset',
+      borderRadius: '3px',
     }),
     option: (styles: any, { isFocused }: any) => ({
       ...styles,
@@ -260,20 +262,6 @@ export default function PersonsSelect({
             )
           }}
         />
-        {/* <UnitsFilter
-          unitsSelected={unitsSelected}
-          setUnitsSelected={(unitsSel: IUnit[]) => {
-            setUnitsSelected(unitsSel);
-            searchPersonsAsync(
-              searchValue,
-              isCheckedZam,
-              isCheckedStud,
-              unitsSel
-            );
-          }} */}
-        {/* setParentMenuOpen={setMenuIsOpen}
-        /> */}
-
         {
           optionsMode === OptionsMode.FAVOURITE ? (
             <div style={{ margin: '10px auto 5px 10px' }}>Oblíbené osoby:</div>
@@ -285,7 +273,7 @@ export default function PersonsSelect({
       </components.Menu>
     )
   }
-  const getDefaultValue = () => {} //TADY POKRACUJ
+  const getDefaultValue = () => {}
   return (
     <div
       className="persons-select-container"
@@ -302,9 +290,8 @@ export default function PersonsSelect({
         placeholder="Vyhledej osobu (alespoň 2 písmena) ..."
         components={{ Menu, IndicatorsContainer }}
         options={optionsPersons}
-        getOptionValue={(option) => '' + option.id} //pomoci '' nemusime stringify
+        getOptionValue={(option) => '' + option.id}
         formatOptionLabel={PersonContainer}
-        // getOptionLabel={option => }
         isDisabled={disabled}
         isSearchable={true}
         isClearable={true}
@@ -329,7 +316,6 @@ export default function PersonsSelect({
           }
         }}
         onFocus={() => {
-          //spusti filterPersons
           searchPersonsAsync(
             searchValue,
             isCheckedZam,
@@ -337,10 +323,9 @@ export default function PersonsSelect({
             isCheckedNezar,
             unitsSelected,
           )
-          //          setMenuIsOpen(true);
         }}
-        filterOption={() => true} // filtrovano v async funkci
-        isLoading={isLoading} //featura loading... zobrazi se v menu
+        filterOption={() => true}
+        isLoading={isLoading}
       />
     </div>
   )

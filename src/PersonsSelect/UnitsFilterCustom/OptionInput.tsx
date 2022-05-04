@@ -1,5 +1,4 @@
-import React from 'react'
-import { IUnit } from './interfaces/interfaces'
+import { IUnit } from '../interfaces/interfaces'
 
 interface Props {
   unit: IUnit
@@ -13,7 +12,6 @@ const OptionInput = ({ unit, onClickUnitInputClearIndicator }: Props) => {
         className="unit-container__circle"
         style={{ backgroundColor: unit.color }}
       ></span>
-      {/* <span style={{ marginRight: '3px' }}>{unit.shortCs}</span> */}
       <span>{unit.shortCs}</span>
       <div
         className="unit-container__input__clear"

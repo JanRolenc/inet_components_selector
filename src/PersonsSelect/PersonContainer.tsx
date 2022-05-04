@@ -1,9 +1,8 @@
-import React from 'react'
 import { IPerson, FormatOptionLabelMeta } from './interfaces/interfaces'
 import personalImage from './pictures/icon_head.png'
-import './PersonContainer.css'
 import yellowStar from './pictures/yellow_star.png'
 import blackStar from './pictures/black_star.png'
+import { Fragment } from 'react'
 
 const PersonContainer = (person: IPerson, meta: FormatOptionLabelMeta) => {
   //----------podbarveni casti v person.name, ktera se shoduje s vyrazem vlozenym do inputu
@@ -33,7 +32,7 @@ const PersonContainer = (person: IPerson, meta: FormatOptionLabelMeta) => {
   return meta.context === 'menu' ? (
     <div className="person-container">
       <img src={personalImage} alt="icon" loading="lazy" />
-      <div className="person-details">
+      <div className="person-container__details">
         <div>
           <span style={{ fontWeight: 'bold' }}>{label}</span> ({person.id})
         </div>
@@ -60,12 +59,12 @@ const PersonContainer = (person: IPerson, meta: FormatOptionLabelMeta) => {
       />
     </div>
   ) : (
-    <div>
+    <Fragment>
       <a href={'/s/k/' + person.id} className="p-link">
         {person.name}
       </a>{' '}
       ({person.id})
-    </div>
+    </Fragment>
   )
 }
 export default PersonContainer

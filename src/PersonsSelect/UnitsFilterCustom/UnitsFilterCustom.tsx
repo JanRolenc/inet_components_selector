@@ -1,8 +1,8 @@
-import React, { Component, useState, Fragment } from 'react'
-import { units } from './docs/units'
+import { useState, Fragment } from 'react'
+import { units } from '../docs/units'
 import OptionMenu from './OptionMenu'
 import OptionInput from './OptionInput'
-import { IUnit, IUnitsFilterCustom } from './interfaces/interfaces'
+import { IUnit, IUnitsFilterCustom } from '../interfaces/interfaces'
 
 function UnitsFilterCustom({
   unitsSelected,
@@ -18,12 +18,10 @@ function UnitsFilterCustom({
   const onClickUnitMenu = (unitIdToSelect: string) => {
     const selectedUnitMenu = unitsList.filter((u) => u.id === unitIdToSelect)[0]
     setUnitsSelected([...unitsSelected, selectedUnitMenu])
-    //zmeny v seznamu fakult v menu (unitsList) provadime nize v return
   }
 
   const onClickUnitClearIndicator = (unitIdToRemove: string) => {
     setUnitsSelected(unitsSelected.filter((u) => u.id !== unitIdToRemove))
-    //zmeny v seznamu fakult v menu (unitsList) provadime nize v return
   }
 
   const onClickInputClearIndicator = () => {
@@ -75,7 +73,7 @@ function UnitsFilterCustom({
           <div className="unit-container">
             {unitsList.length
               ? unitsList
-                  .filter((u) => unitsSelected.every((s) => u.id !== s.id)) //!!!srovnani dvou poli
+                  .filter((u) => unitsSelected.every((s) => u.id !== s.id))
                   .map((unit: IUnit, key: number) => (
                     <OptionMenu
                       key={key}
