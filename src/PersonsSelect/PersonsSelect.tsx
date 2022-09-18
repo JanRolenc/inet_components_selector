@@ -295,8 +295,8 @@ export default function PersonsSelect({
         isDisabled={disabled}
         isSearchable={true}
         isClearable={true}
-        // menuIsOpen={menuIsOpen}
-        menuIsOpen={true}
+        menuIsOpen={menuIsOpen}
+        // menuIsOpen={true}
         styles={personsStyles}
         onChange={(person) => setSelectedPerson(person)}
         inputValue={searchValue}
